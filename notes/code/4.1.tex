@@ -348,7 +348,16 @@ $=4 \mod 11 = 4$\\
 \textbf{Answer: } 4
 
 \columnbreak
-\item $(99^2\mod 32)^3\mod 15$
+\item $(99^2\mod 32)^3\mod 15$\\
+Let $B=99^2 \mod 32$\\
+Simplify $B$\\
+\quad $B=(99 \mod32)(99\mod32)\mod32$\\
+\quad $=3\mod32$\\
+\quad $\therefore B=3$\\
+$Goal: B^3\mod 15$\\
+\quad $= 3^3 \mod 15$\\
+\quad $= 27 \mod 15$\\
+\quad \textbf{Answer:} 12
 \end{enumerate}
 \end{multicols}
 \vspace{5in}
@@ -369,8 +378,14 @@ The integers modulo $m$, denoted $\mathbb{Z}_m$, are defined as
 \textbf{Example 8.} Find the following:
 \begin{multicols}{2}
 \begin{enumerate}[(a)]
-\item $7 +_{11} 9 =$
-\item $7 \cdot_{11} 9 =$
+\item $7 +_{11} 9 =$\\
+\quad $=7+9\mod11$\\
+\quad $=16\mod11$\\
+\quad \textbf{Answer:} 5
+\item $7 \cdot_{11} 9 =$\\
+\quad $=7\cdot9\mod11$\\
+\quad $=63\mod11$\\
+\quad \textbf{Answer:} 8
 \end{enumerate}
 \end{multicols}
 \end{document}
