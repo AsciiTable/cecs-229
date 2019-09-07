@@ -122,17 +122,17 @@ Suppose $n,b\in\mathbb{Z^+}$ where $n$ is in decimal expansion and $b$ is the ba
 \begin{framed}
 \noindent\textbf{PSEUDOCODE} $|$ Constructing Base $b$ expansions\\
 INPUT: $n > 0,b>10$integers\\
-OUTPUT: $(a_{k-1},a_{k-2},...,a_1,a_0)-$ base $b$ expansion
+OUTPUT: $(a_{k-1},a_{k-2},...,a_1,a_0)-$ base $b$ expansion\\
 \begin{lstlisting}
     bExpansion(n,b):
         q = n
         r = []
         while q != 0:
-            r[k] = a mod b // keep remainder
-            q = q div b // computing new quotient for next loop
+            r[k] = a mod b #keep remainder
+            q = q div b #computing new quotient for next loop
             k++
         return (a_k-1, a_k-2, ..., a_1, a_0) 
-        // reverse order of list r
+        #reverse order of list r
 \end{lstlisting}
 \end{framed}
 \vspace{0.25in}
@@ -164,4 +164,90 @@ Suppose $n\in\mathbb{Z^+}$ with octal or hexadecimal expansion $(a_{k-1}, a{k-2}
     \quad\textbf{Answer:} $101010001101_2$
 \end{enumerate}
 \end{multicols}
+
+%****************INTEGER OPERATIONS
+\textbf{\subsection*{Integer Operations}}
+\begin{framed}
+\noindent\textbf{ALGORITHM} $|$ Addition of Binary Numbers\\
+Suppose $a=(a_{k-1},a_{k-2},...,a_1,a_0)_2$ and $u=(u_{k-1},u_{k-2},...,u_1,u_0)_2$ are the binary representations of decimal numbers $a$ and $u$.
+\begin{enumerate}[\quad1.]
+    \item For $i=0,1,....,k-1$ perform $a_{i+2}u_i$ plus any carry from the $i$ - 1st step.
+\end{enumerate}
+\end{framed}
+\begin{framed}
+\noindent\textbf{PSEUDOCODE} $|$ Adding two numbers with base-2 expansions\\
+INPUT: $a=(a_{k-1},a_{k-2},...,a_1,a_0)_2,$ $u=(u_{k-1},u_{k-2},...,u_1,u_0)_2$\\
+OUTPUT: $(s_{k-1},s_{k-2},...,s_1,s_0)_2$ sum of $a+u$
+\begin{lstlisting}
+    binaryAdd(a,u): 
+        c = 0 #carry
+        for i in 0:k-1:
+            s_i = (a_i + u_i + c) mod 2
+            c = (a_i + u_i + c) div 2
+        s_k = c
+    return (s_k, s_k-1, s_k-2, ..., s_1, s_0)
+\end{lstlisting}
+\end{framed}
+
+%*******************RUN-THROUGH
+\textbf{\subsection*{RUN-THROUGH:}}
+\begin{framed}
+%*********ALGORITHM Multiplication of Binary Numbers****
+\noindent\textbf{ALGORITHM} $|$ Multiplication of Binary Numbers\\
+\end{framed}
+%PSEUDOCODE Multiplying two numbers with base-2 expansions
+\begin{framed}
+\noindent\textbf{PSEUDOCODE} $|$ Multiplying two numbers with base-2 expansions\\
+INPUT: $a = (a_{k-1}, a_{k-2},...,a_1,a_0),$ $u = (u_{k-1},u_{k-2},...,u_1,u_0)_2$\\
+OUTPUT: $(s_{k-1},s_{k-2},...,s_1,s_2)_2$ product of $a\cdot u$\\
+\begin{lstlisting}
+    binaryProduct(a,u):
+        c = [] #empty container
+        s = 0
+            for i = 0:k-1:
+                if b_j = 1:
+                    x = a + j zeros appended to the end
+                    c.append(x)
+                else:
+                    c.append(0)
+            for i = 0:k-1:
+                s = binaryAdd(s,c_i)
+        return s
+\end{lstlisting}
+\end{framed}
+%****ALGORITHM Modular Exponentiation 
+\begin{framed}
+\noindent\textbf{ALGORITHM} $|$ Modular Exponentiation\\
+GOAL: $b^n\mod m$ when $b,m,$ and $n$ are large.
+\begin{enumerate}[\quad1.]
+    \item Find the binary expansion of $n,n=a_{k-1}2^{k-1}+...+a_12+a_0$.
+    \item Use Corollary to THM 4.1.4 to compute.
+\end{enumerate}
+\[b^n \mod m\]
+\[=b^{a_{k-1}2^{k-1}+...+a_12+a_0}\mod m\]
+\[=b^{a_{k-1}2^{k-1}}\cdot  b^{a_{k-2}2^{k-2}}...b^{a_12}\cdot b^{a_0}\mod m\]
+\[=[(b^{a_{k-1}2^{k-1}} \mod m)(b^{a_{k-2}2^{k-2}}...b^{a_12}\cdot b^{a_0}\mod m)]\mod m\]
+\[=[(b^{a_{k-1}2^{k-1}} \mod m)((b^{a_{k-2}2^{k-2}} \mod m)b^{a_{k-3}2^{k-3}}...b^{a_12}\cdot b^{a_0}\mod m)\mod m\]
+\[...\]
+\end{framed}
+%************EXAMPLE 5
+\noindent\textbf{Example 5.} Compute $3^11\mod2$.\\
+%PSEUDOCODE Modular Exponentiation
+\begin{framed}
+\noindent\textbf{PSEUDOCODE} $|$ Modular Exponentiation\\
+INPUT: $b$-integer, $m$-integer, $n=(a_{k-1},a_{k-2},...,a_1,a_0)_2$\\
+OUTPUT: $b^n\mod m$\\
+\begin{lstlisting}
+    modExp(b,n,m):
+        x = 1
+        p = b mod m
+            for i = 0:k-1:
+                if a_i = 1:
+                    x = x * p mod m
+                p = p * p mod m
+            return x
+\end{lstlisting}
+\end{framed}
+%************EXAMPLE 6
+\noindent\textbf{Example 6.} Trace through the algorithm to compute $3^11\mod2$.\\
 \end{document}
