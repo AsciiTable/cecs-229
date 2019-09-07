@@ -1,0 +1,167 @@
+\documentclass [12pt]{article}
+\setlength{\oddsidemargin}{0.1in}
+\setlength{\evensidemargin}{0.1in}
+\setlength{\topmargin}{-.7in}
+\setlength{\textheight}{9.25in}
+\setlength{\textwidth}{6.5in}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{enumerate}
+\usepackage{framed}
+\usepackage{epsfig}
+\usepackage{changebar}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\graphicspath{ {images/} }
+\usepackage{listings}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{multicol}
+\usepackage{mathtools}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\setlength{\columnsep}{1cm}
+% mathematical commands
+\newcommand{\zos}{{\{ 0,1\}^{\ast}}}
+\newcommand{\zoi}{{\{ 0,1\}^{\infty}}}
+\newcommand{\zon}{{\{ 0,1\}}}
+\newcommand{\zov}[1]{{\{ 0,1\}^{#1}}}
+\newcommand{\ccc}{{{\cal C}}}
+\newcommand{\gggg}{{{\cal G}}}
+\newcommand{\nat}{{{\cal N}}}
+\newcommand{\rr}{{{\bf RAND}}}
+\newcommand{\pref}{{\sqsubset}}
+\newcommand{\da}{{\downarrow}}
+\newcommand{\ot}{{\otimes}}
+\newcommand{\fann}{{\forall n\in \nat}}
+\newcommand{\pow}{{{\cal P}}}
+\newcommand{\nll}{{{\bf NULL}}}
+\newcommand{\nvc}[1]{{{\bf e_{#1}}}}
+\newcommand{\st}{{\Sigma_{2}^{A}}}
+\newcommand{\ov}[1]{{\overline{#1}}}
+\newcommand{\provided}{{\hspace{.1in}:-\hspace{.1in}}}
+\begin{document}
+\begin{center}\title*{\Large \S \; 4.2 Integer Representations \& Algorithms}\\\author*{Jessica Wei} \end{center}
+\normalsize
+\noindent
+% ----------INTRO
+\textbf{\subsection*{Introduction}}
+At the heart of encrypting a message is the idea of changing the representation of the characters so that if our message is intercepted, the string of characters is incomprehensible to the unintended reader. By now you are well aware that while humans communicate in words, computers communicate in numbers, and in order to understand how a computer can encrypt a string of characters, we need to understand how a computer represents integers. Some commonly used integer expansions are...
+\begin{itemize}
+    \item Decimal Representation - base 10:\\
+    \quad\quad$106=1\cdot100+0\cdot10+6\cdot1 = 1\cdot10^2 +0\cdot10^1 + 6\cdot0 = (106)_{10}$\\
+    \quad\quad$81 = 8\cdot 10^1+1\cdot10^0=(81)_{10}$
+    \item Binary Representation - base 2:\\
+    \quad\quad$(106)_{10} = 1\cdot64+1\cdot32+1\cdot8+1\cdot2 = 1\cdot2^6+1\cdot2^5+0\cdot2^4+1\cdot2^3+0\cdot2^2+1\cdot2^1+0\cdot2^0=(1101010)_2 $
+    \item Octal Representation - base 8
+    \item Hexadecimal Representation - base 16
+\end{itemize}
+\quad We will now delve deeper into these representations and device algorithms to convert between representations\\
+
+\noindent\textbf{Motivation: } Cryptogrophy; to encrypt messages, we need to understand how computers represent numbers (data).
+
+%**********INTEGER REPRESENTATIONS*************
+\textbf{\subsection*{Integer Representations}}
+\begin{framed}
+\noindent\textbf{THM 4.2.1} $|$ \\
+Let $b>1\in\mathbb{Z}$ and $n\in\mathbb{Z^+}$. Then ${\exists!}_{a_i}\in\mathbb{Z}$ satisfying $0<a_i\leq b$ for $i = 0,1,2,.....,k,k \geq0$ such that $n$ has b-expansion
+\[n=a_kb^k+a_{k-1}b^{k-1}+...+a_1b_1+a_0b_0\]
+This is called the $a b$ expansion of $n$, and $a_i$ is called the coefficient of $b^i$
+\end{framed}
+%************EXAMPLE 1
+\noindent\textbf{Example 1.} What is the binary representation of the following numbers?
+\begin{enumerate}[(a)]
+    \item 3\\
+    \quad $=1\cdot2^1+1\cdot2^0$\\
+    \quad \textbf{Answer: }$(11)_2$
+    \item 17\\
+    \quad $1\cdot2^4+0\cdot2^3+0\cdot2^2+0\cdot2^1+1\cdot2^0$\\
+    \quad\textbf{Answer: }$(10001)_2$
+\end{enumerate}
+%************EXAMPLE 2
+\noindent\textbf{Example 2.} What is the decimal expansion of each of the following?
+\begin{enumerate}[(a)]
+    \item $(101011111)_2$\\
+    \quad $=1\cdot2^8+0\cdot2^7+1\cdot2^6+0\cdot2^5+1\cdot2^4+1\cdot2^3+1\cdot2^2+1\cdot2^1+1\cdot2^0$\\
+    \quad $=256 + 64+16+8+4+2+1$\\
+    \quad \textbf{Answer:} $351_{10}$
+    \item $(7016)_8$\\
+    \quad $=7\cdot8^3+0\cdot8^2+1\cdot8^1+6\cdot8^0$\\
+    \quad \textbf{Answer:} $3598_{10}$
+    \item $(2AE0B)_16$\\
+    \quad $=2\cdot16^4+10\cdot16^3+14\cdot16^2+0\cdot16^1+11\cdot16^0$\\
+    \quad\textbf{Answer:} $175,627_{10}$
+\end{enumerate}
+\vspace{0.25in}
+%******ALGORITHM CONVERSION 10 -> 2, 6, 16******
+\begin{framed}
+\noindent\textbf{ALGORITHM} $|$ Converting Base -10 to Base-2,-8-,16\\
+Suppose $n,b\in\mathbb{Z^+}$ where $n$ is in decimal expansion and $b$ is the base you wish to convert to. Then...
+\begin{enumerate}[\quad1.]
+    \item Divide $n$ by $b$ to obtain $n = b\cdot q + a_0$.
+    \item Keep $a_0$ as the rightmost digit in the base $b$-expansion.
+    \item Repeat 1. - 2. with the result $a_i$ as the next digit in the $b$-expansion until q = 0.
+\end{enumerate}
+\end{framed}
+%************EXAMPLE 3
+\noindent\textbf{Example 3.}
+\begin{enumerate}[(a)]
+    \item Find the octal representation of $(12345)_{10}$\\
+    \quad $12,345 = 1,543\cdot8 + 1$\\
+    \quad $1,543 = 24\cdot8+0$\\
+    \quad $24 = 3\cdot8+0$\\
+    \quad $3 = 0\cdot+3$\\
+    \quad\textbf{Answer:} $3001_8$
+\end{enumerate}
+\pagebreak
+
+%*****************PSEUDOCODE******************
+\begin{framed}
+\noindent\textbf{PSEUDOCODE} $|$ Constructing Base $b$ expansions\\
+INPUT: $n > 0,b>10$integers\\
+OUTPUT: $(a_{k-1},a_{k-2},...,a_1,a_0)-$ base $b$ expansion
+\begin{lstlisting}
+    bExpansion(n,b):
+        q = n
+        r = []
+        while q != 0:
+            r[k] = a mod b // keep remainder
+            q = q div b // computing new quotient for next loop
+            k++
+        return (a_k-1, a_k-2, ..., a_1, a_0) 
+        // reverse order of list r
+\end{lstlisting}
+\end{framed}
+\vspace{0.25in}
+
+%***********ALGORITHM from b8 or 16 to 2********
+\begin{framed}
+\noindent\textbf{ALGORITHM} $|$ Converting from Base-8 or Base-16 to Base-2\\
+Suppose $n\in\mathbb{Z^+}$ with octal or hexadecimal expansion $(a_{k-1}, a{k-2},...,a_1,a_0)$.
+\begin{enumerate}[\quad1.]
+    \item If $b=8$: Convert each digit $a_i$ to a binary block of three digits.\\
+    \quad If $b=16$: Convert each digit $a_i$ to a binary block of four digits.
+    \item Concatenate the blocks.
+\end{enumerate}
+\end{framed}
+%************EXAMPLE 4
+\noindent\textbf{Example 4.} Find the binary expansion of each representation.\\
+\begin{multicols}{2}
+\begin{enumerate}[(a)]
+    \item $(765)_8$\\
+    \quad $5=101$\\
+    \quad $6=110$\\
+    \quad $7=111$\\
+    \quad\textbf{Answer:} $111110101_2$
+    \columnbreak
+    \item $(A8D)_{16}$\\
+    \quad $D=1101$\\
+    \quad $8=1000$\\
+    \quad $A=1010$\\
+    \quad\textbf{Answer:} $101010001101_2$
+\end{enumerate}
+\end{multicols}
+\end{document}
