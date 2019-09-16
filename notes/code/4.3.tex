@@ -54,8 +54,9 @@
 Let $p\in\mathbb{Z}^+$. We say $p$ is a prime if it is only divisible by $p$ (itself) and 1. i.e. 2, 3, 5, 7...\\
 Note: If an integer is not prime, then it is called composite.
 \end{framed}
+%--------------------THM 4.3.1
 \begin{framed}
-\noindent\textbf{THM 4.3.2} $|$ \\
+\noindent\textbf{THM 4.3.1} $|$ \\
 Every composite integer has a prime factorization.
 \[a = p_1^{a_1}\cdot p_2^{a_2}\cdot ... p_k^{a_k}\]
 \end{framed}
@@ -65,5 +66,51 @@ Every composite integer has a prime factorization.
 \[10 = 2 \cdot 5\]
 \[\therefore 100 = 2\cdot 2 \cdot 5 \cdot 5\]
 \[\textbf{Answer: }100 = 2^2\cdot5^2\]
+%-----------------THM 4.3.2
+\begin{framed}
+\noindent\textbf{THM 4.3.2} $|$ \\
+If $n$ is composite, then $\exists p\in\mathbb{Z}$such that $p$ is prime, $p\leq\sqrt{n}$, and $p|n$.\\\\
+\textbf{PROOF:} Since n is composite, there exists $a,b\in\mathbb{Z}$ such that $n=a\cdot b$ and $a\neq n \neq b$.\\\\
+Case 1: $a > \sqrt{n}$ and $b>\sqrt{n}$
+\begin{enumerate}[\quad]
+    \item Then $a\cdot b > \sqrt{n}$, $\sqrt{n} = n$
+    \item $\therefore a \cdot b > n$
+    \item This contradicts $a\cdot b = n$
+    \item Hence, it must be true that either $a \leq \sqrt{n}$ or $b \leq \sqrt{n}$
+\end{enumerate}
+Assume $a\leq \sqrt{n}$. If this is not true, the following argument can be made for b.
+\begin{enumerate}[\quad]
+    \item Possibility \#1. $a$ is prime. Then $a\leq n$ satisfies and $n=a\cdot b\Rightarrow a|n$ satisfies.
+    \item Possibility \#2. $a$ is composite. Then by THM 4.3.1, $a$ has a prime factorization so that $n=a\cdot b = p_1^{a_1}....p_x^{a_x}\cdot b$. SO any prime $p_i$ in this factorization divides n $(p_i|n)$ and $ p_i^{a_i}....p_x^{a_x} = a \leq \sqrt{n}$ which implies $p_i\leq \sqrt{n}$
+\end{enumerate}
+\end{framed}
 
+%------------------EX 2
+\noindent\textbf{Example 2.} Show that 61 is prime.\\
+\vspace{0.1in}
+\quad Assume that 61 is composite. In such a case $\exists p \leq \sqrt{61}$ such that $p|61$.
+\begin{enumerate}[\quad]
+    \item $\sqrt{61}\approx7...$, $p\leq\sqrt{61}\approx7...$
+    \item Range of primes: 2, 3, 5, 7...
+    \item $2\nmid61$, $3\nmid61$, $5\nmid61$, $7\nmid61$
+    \item $\Rightarrow$ Contradiction hence 61 cannot be composite. 61 must be prime.
+\end{enumerate}
+%-----------------THM 4.3.3
+\begin{framed}
+\noindent\textbf{THM 4.3.3} $|$ \\
+If $n$ is composite, then $\exists p\in\mathbb{Z}$such that $p$ is prime, $p\leq\sqrt{n}$, and $p|n$.\\\\
+\textbf{PROOF:} Since n is composite, there exists $a,b\in\mathbb{Z}$ such that $n=a\cdot b$ and $a\neq n \neq b$.\\\\
+Case 1: $a > \sqrt{n}$ and $b>\sqrt{n}$
+\begin{enumerate}[\quad]
+    \item Then $a\cdot b > \sqrt{n}$, $\sqrt{n} = n$
+    \item $\therefore a \cdot b > n$
+    \item This contradicts $a\cdot b = n$
+    \item Hence, it must be true that either $a \leq \sqrt{n}$ or $b \leq \sqrt{n}$
+\end{enumerate}
+Assume $a\leq \sqrt{n}$. If this is not true, the following argument can be made for b.
+\begin{enumerate}[\quad]
+    \item Possibility \#1. $a$ is prime. Then $a\leq n$ satisfies and $n=a\cdot b\Rightarrow a|n$ satisfies.
+    \item Possibility \#2. $a$ is composite. Then by THM 4.3.1, $a$ has a prime factorization so that $n=a\cdot b = p_1^{a_1}....p_x^{a_x}\cdot b$. SO any prime $p_i$ in this factorization divides n $(p_i|n)$ and $ p_i^{a_i}....p_x^{a_x} = a \leq \sqrt{n}$ which implies $p_i\leq \sqrt{n}$
+\end{enumerate}
+\end{framed}
 \end{document}
