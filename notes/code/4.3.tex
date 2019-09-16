@@ -1,0 +1,69 @@
+\documentclass [12pt]{article}
+\setlength{\oddsidemargin}{0.1in}
+\setlength{\evensidemargin}{0.1in}
+\setlength{\topmargin}{-.7in}
+\setlength{\textheight}{9.25in}
+\setlength{\textwidth}{6.5in}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{enumerate}
+\usepackage{framed}
+\usepackage{epsfig}
+\usepackage{changebar}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\graphicspath{ {images/} }
+\usepackage{listings}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{multicol}
+\usepackage{mathtools}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\setlength{\columnsep}{1cm}
+% mathematical commands
+\newcommand{\zos}{{\{ 0,1\}^{\ast}}}
+\newcommand{\zoi}{{\{ 0,1\}^{\infty}}}
+\newcommand{\zon}{{\{ 0,1\}}}
+\newcommand{\zov}[1]{{\{ 0,1\}^{#1}}}
+\newcommand{\ccc}{{{\cal C}}}
+\newcommand{\gggg}{{{\cal G}}}
+\newcommand{\nat}{{{\cal N}}}
+\newcommand{\rr}{{{\bf RAND}}}
+\newcommand{\pref}{{\sqsubset}}
+\newcommand{\da}{{\downarrow}}
+\newcommand{\ot}{{\otimes}}
+\newcommand{\fann}{{\forall n\in \nat}}
+\newcommand{\pow}{{{\cal P}}}
+\newcommand{\nll}{{{\bf NULL}}}
+\newcommand{\nvc}[1]{{{\bf e_{#1}}}}
+\newcommand{\st}{{\Sigma_{2}^{A}}}
+\newcommand{\ov}[1]{{\overline{#1}}}
+\newcommand{\provided}{{\hspace{.1in}:-\hspace{.1in}}}
+\begin{document}
+\begin{center}\title*{\Large \S \; 4.3 Primes \& GCD}\\\author*{Jessica Wei} \end{center}
+\normalsize
+\noindent
+%-------------PRIME-------------------
+\textbf{\subsection*{Prime}}
+\begin{framed}
+\noindent\textbf{DEF} $|$ Prime\\
+Let $p\in\mathbb{Z}^+$. We say $p$ is a prime if it is only divisible by $p$ (itself) and 1. i.e. 2, 3, 5, 7...\\
+Note: If an integer is not prime, then it is called composite.
+\end{framed}
+\begin{framed}
+\noindent\textbf{THM 4.3.2} $|$ \\
+Every composite integer has a prime factorization.
+\[a = p_1^{a_1}\cdot p_2^{a_2}\cdot ... p_k^{a_k}\]
+\end{framed}
+%------------------EX 1
+\noindent\textbf{Example 1.} Find the prime factorization of 100.\\
+\[100 = 10 \cdot 10\]
+\[10 = 2 \cdot 5\]
+\[\therefore 100 = 2\cdot 2 \cdot 5 \cdot 5\]
+\[\textbf{Answer: }100 = 2^2\cdot5^2\]
+
+\end{document}
