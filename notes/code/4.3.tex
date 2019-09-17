@@ -167,7 +167,24 @@ The Least Common Multiple of $a,b\in\mathbb{Z^+}$ is the smallest integer $m$ su
     \item  i.e. lcm(8, 10) = 40
     \item 8: 8, 16, 24, 32, \textbf{40}, 48...
     \item 10: 10, 20, 30, \textbf{40}, 50...
+    \item 8 = $2^3$, 10 = $2^3\cdot5^1$
 \end{enumerate}
+The powers of the prime factors of the least common multiple have to be the highest power present in the prime factors for $a\& b$.
+\[LCM (a,b) = p_1^{max(a_1,b_1}...p_k^{max(a_k,b_k}\]
+\textbf{NOTE: } Finding the GCD by trail \& error of prime factorization is very costly and slow when trying to program it.
+\end{framed}
 
+%-------------Euclidean Algorithm-------------------
+\textbf{\subsection*{Euclidean Algorithm}}
+%-----------------THM 4.3.4
+\begin{framed}
+\noindent\textbf{THM 4.3.4} $|$ \\
+Let $a,b\in\mathbb{Z^+}$ such that $a=b\cdot q+r$, $r>0$. Then the $gcd(a, b) = gcd(b,r)$\\\\
+\textbf{PROOF:} Idea - show that all divisors of $a$ \& $b$ are divisors of b and r because this includes the GCD.\\
+i.e. Show $d|a \wedge d|b$
+\begin{enumerate}[(i)]
+    \item $d|a\Rightarrow a = d\cdot s + a_0$
+    \item $b|d\Rightarrow b = d\cdot k+b_0$
+\end{enumerate}
 \end{framed}
 \end{document}
