@@ -186,5 +186,37 @@ i.e. Show $d|a \wedge d|b$
     \item $d|a\Rightarrow a = d\cdot s + a_0$
     \item $b|d\Rightarrow b = d\cdot k+b_0$
 \end{enumerate}
+To show $d|r$: $a=b\cdot q+r$
+\begin{enumerate}[\quad]
+    \item $d_s = d\cdot k\cdot q + r$
+    \item $\Rightarrow r = d\cdot s-d\cdot k\cdot q$
+    \item $\Rightarrow r = d\cdot s - d\cdot k\cdot q$
+    \item $\Rightarrow r = d(s-k\cdot q)$ where $s-k\cdot q \in\mathbb{Z}$
+    \item $\Rightarrow d|r$
+    \item $\Rightarrow d|b$ and $d|r$
+\end{enumerate}
+Now assume $d|b$ and $d|r$ so that $b=d\cdot k$ \& $r = d\cdot s$
+\begin{enumerate}[\quad]
+    \item Since $a = b\cdot q+r$
+    \item $a=d\cdot k\cdot q + d\cdot s = d(k\cdot q + s)\Rightarrow d|a$ where $k\cdot q+s \in\mathbb{Z}$
+    \item $\therefore d|a$ \& $d|b$
+\end{enumerate}
+Hence all divisors of a \& b are divisors of b \& r including GCD.
 \end{framed}
+\pagebreak
+%------------------EX 5
+\noindent\textbf{Example 5. }Find the GCD(a, b) where $a=b\cdot q + r$, then we can successfully reduce the problem of finding GCD(a, b) by dividing the large number by the smaller number, then the smaller number by the remainder until $r = 0$.
+\begin{enumerate}[a)]
+    \item Find gcd(20, 500)\\
+    $500 = 4\cdot 120 + 20$ $\Rightarrow$ gcd(120, 20)\\
+    $120 = 6\cdot 20 + 0$ $\Rightarrow$ 20\\
+    \textbf{Answer: }gcd(20, 500) = 20
+    \item Find gcd(414,662)\\
+    $662 = 1\cdot 414 + 248$ $\Rightarrow$ gcd(414, 248)\\
+    $414 = 1\cdot 248 + 166$ $\Rightarrow$ gcd(248, 166)\\
+    $248 = 1\cdot 166 + 82$ $\Rightarrow$ gcd(166, 82)\\
+    $166 = 2\cdot 82 + 2$ $\Rightarrow$ gcd(82, 2)\\
+    $82 = 41\cdot 2 + 0$ $\Rightarrow$ 2\\
+    \textbf{Answer: }gcd(414, 662) = 2
+\end{enumerate}
 \end{document}
