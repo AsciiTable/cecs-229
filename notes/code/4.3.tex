@@ -98,19 +98,76 @@ Assume $a\leq \sqrt{n}$. If this is not true, the following argument can be made
 %-----------------THM 4.3.3
 \begin{framed}
 \noindent\textbf{THM 4.3.3} $|$ \\
-If $n$ is composite, then $\exists p\in\mathbb{Z}$such that $p$ is prime, $p\leq\sqrt{n}$, and $p|n$.\\\\
-\textbf{PROOF:} Since n is composite, there exists $a,b\in\mathbb{Z}$ such that $n=a\cdot b$ and $a\neq n \neq b$.\\\\
-Case 1: $a > \sqrt{n}$ and $b>\sqrt{n}$
-\begin{enumerate}[\quad]
-    \item Then $a\cdot b > \sqrt{n}$, $\sqrt{n} = n$
-    \item $\therefore a \cdot b > n$
-    \item This contradicts $a\cdot b = n$
-    \item Hence, it must be true that either $a \leq \sqrt{n}$ or $b \leq \sqrt{n}$
+There are infinitely many primes.\\\\
+\textbf{PROOF:} Assume that there are only k-number primes $p_1,p_2.... p_k$. Form the number\\
+\[Q=p_1...p_x+1\]\\
+Assuming Q is composite, $Q$ must have a prime factorization. Suppose $p$ is a prime factor of Q ($p|Q$).\\
+\vspace{0.1cm}
+\\
+Notice then that $p|Q-p_1....p_k\Rightarrow p|1$, which is impossible. Hence, Q cannot be composite.\\
+\vspace{0.1cm}
+\\
+So Q is prime which is a contradiction to finite number $k$ primes. There are indefinitely-many primes. 
+\[2016: 2^{74207281}-1\]
+\[2017: 2^{7712321917}-1\]
+\end{framed}
+
+%-------------GCD's & LCM's-------------------
+\textbf{\subsection*{GCD's \& LCM's}}
+%-------------------GCD DEF
+\begin{framed}
+\noindent\textbf{DEF} $|$ GCD\\
+Let $a,b\in\mathbb{Z^+}$, the largest integer $d\in\mathbb{Z^+}$ that divides $a$ and $b$ is the greatest common divider. 
+\[d|a \wedge d|b\]
+\end{framed}
+%-------------------Pairwise Relatively Prime DEF
+\begin{framed}
+\noindent\textbf{DEF} $|$ Pairwise Relatively Prime\\
+Two or more integers are called pairwise relatively prime if the GCD between any two such integers is 1.
+\[a_1,a_2...a_k\]
+\[gcd(a_i,a_j) = 1\]
+\[1<i,j<k\]
+\[gcd (4,3) = 1\]
+\[i\neq j\]
+\end{framed}
+%------------------EX 3
+\noindent\textbf{Example 3.} What is...
+\begin{multicols}{2}
+\begin{enumerate}[a)]
+    \item gcd(24, 36) = 12\\
+    \textbf{Answer: }$12|24$ \& $12|36$
+    \item gcd(17, 22) = 1\\
+    \textbf{Answer: } Relatively Prime
 \end{enumerate}
-Assume $a\leq \sqrt{n}$. If this is not true, the following argument can be made for b.
-\begin{enumerate}[\quad]
-    \item Possibility \#1. $a$ is prime. Then $a\leq n$ satisfies and $n=a\cdot b\Rightarrow a|n$ satisfies.
-    \item Possibility \#2. $a$ is composite. Then by THM 4.3.1, $a$ has a prime factorization so that $n=a\cdot b = p_1^{a_1}....p_x^{a_x}\cdot b$. SO any prime $p_i$ in this factorization divides n $(p_i|n)$ and $ p_i^{a_i}....p_x^{a_x} = a \leq \sqrt{n}$ which implies $p_i\leq \sqrt{n}$
+\end{multicols}
+%------------------EX 4
+\noindent\textbf{Example 4.}Determine if the integers in the list are pairwise relatively prime.
+\begin{enumerate}[a)]
+    \item 10, 17, 21\\
+    gcd(10, 19) = 1, gcd(10, 24) = 1, gcd(17, 21) = 1\\
+    \textbf{Answer: }$\therefore$ pairwise relatively prime
+    \item 10, 19, 24\\
+    gcd(10, 19) = 1, gcd(10, 24) = \textbf{2}, gcd (19, 24)\\
+    \textbf{Answer: }$\therefore$ not pairwise relatively prime
 \end{enumerate}
+%------------------NOTICE
+\textbf{NOTICE: }In general, if we are trying to find the GCD of any two numbers and we consider their prime factorization, then..
+\[a=p_1^{a_1}...p_k^{a_k}, b=p_1^{b_1}...p_k^{b_k}\]
+\[24=2^3\cdot3, 10=2\cdot 5\]
+\[gcd(24,10)=2\]
+\[24 = 2^3\cdot3^1, 36 = 2^2\cdot3^2\]
+\[gcd = 2^2\cdot 3^1 = 12\]
+\[** gcd (a,b) = p_1^{min(a_1b_1}....p_k^{min(a_kb_k}**\]
+\vspace{0.2in}
+%-------------------LCM DEF
+\begin{framed}
+\noindent\textbf{DEF} $|$ LCM\\
+The Least Common Multiple of $a,b\in\mathbb{Z^+}$ is the smallest integer $m$ such that $a|m$ and $b|m$.
+\begin{enumerate}[\quad]
+    \item  i.e. lcm(8, 10) = 40
+    \item 8: 8, 16, 24, 32, \textbf{40}, 48...
+    \item 10: 10, 20, 30, \textbf{40}, 50...
+\end{enumerate}
+
 \end{framed}
 \end{document}
