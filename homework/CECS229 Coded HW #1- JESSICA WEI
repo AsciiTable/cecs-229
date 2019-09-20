@@ -11,6 +11,7 @@ def modExp(b, n, m):
         p = p % m
         loop = loop + 1
 
+    print("Array: ", binarray)
     print("Answer: ", x) 
     
 modExp(3,644,645)
