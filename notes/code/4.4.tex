@@ -200,6 +200,84 @@ has a unique solution modulo $m = m_1\cdot m_2\cdot ... m_n$ provided that:
     \item So $m_k|M_j$. Then... (anything $M_k$ is going away [= 0])
     \item $x=a_1M_1\Bar{M}_1+...+a_1M_k\Bar{M}_k+...a_nM_n\Bar{M}_n\equiv 0+0+...+a_1M_k\Bar{M}_k+0...+0\mod m_k$
     \item $\Rightarrow x=a_kM_k\Bar{M}_k\mod M_k$
+    \item $\Rightarrow x=a_x\cdot1\mod m_k$
+    \item $\Rightarrow x=a_x\mod m_k$
+    \item This is true for any $k=1,2,.... n$
+    \item Hence $x=a_1M_1\Bar{M}_1+a_2M_2\Bar{M}_2+...a_nM_n\Bar{M}_n$ solves the system.
+\end{enumerate}
+\pagebreak
+%------------------EX 1
+\noindent\textbf{Example 1.} Solve
+\[x\equiv2\mod3\]
+\[x\equiv3\mod5\]
+\[x\equiv2\mod7\]
+with the Chinese Remainder Theorem
+\begin{enumerate}[\indent]
+    \item *$m_1=3,m_2=5,m_3=7,m=3\cdot5\cdot7=105$
+    \item *$M_1=5\cdot7=35,M_2=3\cdot7=21,M_3=3\cdot5=15$
+    \item *Need $\Bar{M}_1\cdot35\equiv1\mod3\Rightarrow2$, $\Bar{M}_2\cdot21\equiv1\mod5\Rightarrow1$, $\Bar{M}_3\cdot15\equiv1\mod7\Rightarrow1$
+    \item $x=a_1M_1\Bar{M}_1+a_2M_2\Bar{M}_2+a_3M_3\Bar{M}_3$
+    \item\quad=$2\cdot35\cdot2+3\cdot21\cdot1+2\cdot15\cdot1 = 140+63+30=233\equiv?\mod105$ where $? = 23$
+    \item$\Rightarrow x\equiv23\mod105\Rightarrow x-23=105k$\quad $k\in\mathbb{Z}$
+    \item\textbf{Answer:} $x=105k+23$
+\end{enumerate}
+\vspace{0.2in}
+%------------------EX 2
+\noindent\textbf{Example 2.} Solve
+\[x\equiv2\mod3\quad(1)\]
+\[x\equiv3\mod5\quad(2)\]
+\[x\equiv2\mod7\quad(3)\]
+with substitution
+\begin{enumerate}[\indent]
+    \item $(1)\quad x-2=3k\quad k\in\mathbb{Z}\Rightarrow x=3k+2\quad(A)$
+    \item Plug (A) into (2).
+    \item\quad $3k+2\equiv3\mod5\Rightarrow mk\equiv1\mod5$ \quad\quad $3\Bar{a}\equiv1\mod5$ where $\Bar{a}\equiv2$
+    \item\quad $2\cdot3k\equiv2\cdot1\mod5\Rightarrow k\equiv2\mod5$
+    \item\quad $k-2=5q\quad q\in\mathbb{Z}\Rightarrow k = 5q+2\quad(B)$
+    \item Plug (B) into (A) -- This results in an $x$ that solves (1) and (2).
+    \item\quad $x=3k+2 = 3(5q+2)+2\Rightarrow x=15q+8\quad(C)$
+    \item Plug (C) into (3).
+    \item\quad $15q+8\equiv2\mod7$
+    \item\quad $15q\equiv-2\mod7$
+    \item\quad $15q\equiv1\mod7$ where $\Bar{a}15\equiv 1\mod7$, $\Bar{a}\equiv1$
+    \item\quad $1\cdot15q\equiv1\cdot1\mod7$
+    \item\quad $q=1\mod7\Rightarrow q=7u+1\quad(D)$
+    \item Plug (D) into (C) to obtain an $x$ that satisfies the whole system.
+    \item\quad $x=15(7u+1)+8 = 105u+15+8$
+    \item\textbf{Answer:} $x=105u+23$
 \end{enumerate}
 
+%-------------Fermat's Little THM & Modular Exponentiation
+\textbf{\subsection*{Fermat's Little Theorem \& Modular Exponentiation}}
+\begin{framed}
+\noindent$|$ THM 4.4.2\\
+If $p$ is prime \& $p\nmid a$ then...
+\begin{enumerate}[(i)]
+    \item $a^{p-1}\equiv1\mod p$
+    \item $a^p\equiv a\mod p$
+\end{enumerate}
+\end{framed}
+%------------------EX 3
+\noindent\textbf{Example 3.} Find each of the following
+\begin{enumerate}[a)]
+    \item $7^{222}\mod11=?\mod m$\\
+    \quad *Idea: Recall $a\mod m = b\mod m$ if and only if $a\equiv b\mod m$. We will reduce $7^{222}$ into a smaller number $b$ modulo $m$. i.e. $7^{222}\equiv ? smaller \mod 11$\\
+    \quad Notice 11 is prime \& $p=11\nmid7$\\
+    \quad Hence, by FLT...
+    \[7^{11-1}\equiv1\mod11\Rightarrow7^{10}\equiv1\mod11\]
+    *Claim: If $a=b\mod m$. then $a^k=b^k\mod m$ for $k\in\mathbb{Z^+}$\\
+    \quad *Proof: $(7^{10})^{21}\equiv 1^{20}\mod11$\\
+    \quad $7^{222} = 1\mod11\Rightarrow7^2\cdot7^{200}=7^2\cdot1\mod11$\\
+    \quad $7^{222}\equiv7^2\mod11\Rightarrow7^{222}\mod11\equiv7^2\mod11=49\mod11$\\
+    \quad\textbf{Answer:} $5\mod11$
+    \item $7^{121}\mod13 = ?\mod13$\\
+    *Goal: $7^{121}=?\mod13$, $p=13$, $13\nmid7$\\
+    \quad$\Rightarrow7^{13-1}\equiv1\mod13$ by FLT\\
+    $\Rightarrow(7^{12})^{10}\equiv1^{10}\mod13$\\
+    $7\cdot7^{120}\equiv1\cdot7\mod13$\\
+    $7^{121} = 7\mod13$\\
+    $\Rightarrow 7^{121}\mod13 = 7\mod13$\\
+    \textbf{Answer:} 7
+\end{enumerate}
+\pagebreak
 \end{document}
