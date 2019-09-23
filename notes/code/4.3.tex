@@ -207,7 +207,7 @@ Hence all divisors of a \& b are divisors of b \& r including GCD.
 %------------------EX 5
 \noindent\textbf{Example 5. }Find the GCD(a, b) where $a=b\cdot q + r$, then we can successfully reduce the problem of finding GCD(a, b) by dividing the large number by the smaller number, then the smaller number by the remainder until $r = 0$.
 \begin{enumerate}[a)]
-    \item Find gcd(20, 500)\\
+    \item Find gcd(120, 500)\\
     $500 = 4\cdot 120 + 20$ $\Rightarrow$ gcd(120, 20)\\
     $120 = 6\cdot 20 + 0$ $\Rightarrow$ 20\\
     \textbf{Answer: }gcd(20, 500) = 20
@@ -219,4 +219,35 @@ Hence all divisors of a \& b are divisors of b \& r including GCD.
     $82 = 41\cdot 2 + 0$ $\Rightarrow$ 2\\
     \textbf{Answer: }gcd(414, 662) = 2
 \end{enumerate}
+\vspace{0.2in}
+
+%--------------------THM 4.3.5
+\begin{framed}
+\noindent\textbf{THM 4.3.5} $|$ \\
+Let $a,b\in\mathbb{Z^+}$. Then $\exists s,t\in\mathbb{Z}$ such that $a\cdot s + b\cdot t = $ gcd($a$, $b$) $\Rightarrow$ (Bezout Identity) where $s$ and $t$ are Bezout coefficients.
+\end{framed}
+%------------------EX 6
+\noindent\textbf{Example 6. }Find the Bezout Coefficient for.
+\begin{enumerate}[a)]
+    \item gcd(120, 500) = 20\\
+    $500 = 4\cdot 120 + 20$ $\Rightarrow$ $20 = 500 - 4\cdot20$\\
+    $120 = 6\cdot 20 + 0$ $\Rightarrow$ (1, -4)\\
+    \textbf{Answer: }(-4, 1)
+    \item Find gcd(414,662)\\
+    $662 = 1\cdot 414 + 248$ $\Rightarrow$ $248 = 662-1\cdot414$\\
+    $414 = 1\cdot 248 + 166$ $\Rightarrow$ $166=414-1\cdot248$\\
+    $248 = 1\cdot 166 + 82$ $\Rightarrow$ $82=2\cdot48-1\cdot116$\\
+    $166 = 2\cdot 82 + 2$ $\Rightarrow$ $2=166-2\cdot82$\\
+    $82 = 41\cdot 2 + 0$\\
+    -----------------------\\
+    $2 = 166-2\cdot82$\\
+    $=166-2\cdot(248-166) = 3\cdot166-2\cdot248$\\
+    $=3(414-248)-2\cdot248 = 3\cdot414-5\cdot248$\\
+    $=3\cdot414-5\cdot248 = 3\cdot414 - 5(662-1\cdot414)$\\
+    $8\cdot414 - 5\cdot662 \Rightarrow (-5,8)$\\
+    \textbf{Answer: } (-5, 8)
+\end{enumerate}
+\vspace{0.2in}
+
+
 \end{document}
