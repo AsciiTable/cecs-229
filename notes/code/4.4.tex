@@ -1,0 +1,175 @@
+\documentclass [12pt]{article}
+\setlength{\oddsidemargin}{0.1in}
+\setlength{\evensidemargin}{0.1in}
+\setlength{\topmargin}{-.7in}
+\setlength{\textheight}{9.25in}
+\setlength{\textwidth}{6.5in}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{enumerate}
+\usepackage{framed}
+\usepackage{epsfig}
+\usepackage{changebar}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\graphicspath{ {images/} }
+\usepackage{listings}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{multicol}
+\usepackage{mathtools}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\setlength{\columnsep}{1cm}
+% mathematical commands
+\newcommand{\zos}{{\{ 0,1\}^{\ast}}}
+\newcommand{\zoi}{{\{ 0,1\}^{\infty}}}
+\newcommand{\zon}{{\{ 0,1\}}}
+\newcommand{\zov}[1]{{\{ 0,1\}^{#1}}}
+\newcommand{\ccc}{{{\cal C}}}
+\newcommand{\gggg}{{{\cal G}}}
+\newcommand{\nat}{{{\cal N}}}
+\newcommand{\rr}{{{\bf RAND}}}
+\newcommand{\pref}{{\sqsubset}}
+\newcommand{\da}{{\downarrow}}
+\newcommand{\ot}{{\otimes}}
+\newcommand{\fann}{{\forall n\in \nat}}
+\newcommand{\pow}{{{\cal P}}}
+\newcommand{\nll}{{{\bf NULL}}}
+\newcommand{\nvc}[1]{{{\bf e_{#1}}}}
+\newcommand{\st}{{\Sigma_{2}^{A}}}
+\newcommand{\ov}[1]{{\overline{#1}}}
+\newcommand{\provided}{{\hspace{.1in}:-\hspace{.1in}}}
+\begin{document}
+\begin{center}\title*{\Large \S \; 4.4 Solving Congruences}\\\author*{Jessica Wei} \end{center}
+\normalsize
+\noindent
+%-------------Linear Congruence
+\textbf{\subsection*{Linear Congruence}}
+\begin{framed}
+\noindent\textbf{DEF} $|$ Linear Congruence\\
+A congruence of the form 
+\[ax=b(\mod m)\]
+where $m$ is a positive integer, $a$ and $b$ are integers, and $x$ is a variable, is called a linear congruence.\\
+\end{framed}
+%------------------GOAL 
+\noindent\textbf{Goal.} Solve for $x$\\
+\indent Case 1: $a|b$\\
+\indent \indent Q: if $a|b$, is the answer $x=\frac{b}{a}\mod m$?\\
+\indent\indent Short Answer: Not always, i.e. $2\cdot 7\equiv8\mod6\neq7\equiv4\mod6$\\
+\indent\indent Long Answer...... (see below)
+\begin{framed}
+%------------------LEMMA 4.4.1
+\noindent$|$ Lemma 4.4.1 (4.3.2 in textbook)\\
+Let $a,b,c\in\mathbb{Z^+}$. If gcd($a$, $b$) = 1, and $a|b\cdot c$, then $a|c$ 
+\end{framed}
+\noindent\textbf{PROOF}\\
+\indent If gcd($a$, $b$) = 1, then $\exists s,t,\in\mathbb{Z}$ such that $a\cdot s\cdot c + t\cdot b\cdot c = c$.\\
+\indent Since $a|b\cot c$, $b\cdot c = a\cdot k $ for some $k\in\mathbb{Z}$.\\
+\indent Hence, $a\cdot s\cdot c+a\cdot k \cdot t = c \Rightarrow a(s\cdot c + k\cdot t) = c$ where $s\cdot c + k\cdot t \in\mathbb{Z}$\\
+\indent$\therefore a|c$
+\vspace{0.2in}
+%------------------THM 4.3.6
+\begin{framed}
+\noindent $|$ THM 4.3.6\\
+Let $m\in\mathbb{Z^+}$ and $a,b,c\in\mathbb{Z}$. If (1) $a\cdot c \equiv b\cdot a\mod m$ and (2) gcd($a$, $m$) = 1, then $c\equiv b\mod m$
+\end{framed}
+\noindent\textbf{PROOF}
+\begin{enumerate}[\indent]
+    \item By (1), $a\cdot c-b\cdot a = m\cdot k \Rightarrow a(c-b) = m\cdot k$. Since gcd($a$, $m$) = 1 and $a|m\cdot k$, then by Lemma 4.4.1, $a|k$.
+    \item\quad$\Rightarrow c-b=m(\frac{k}{a}$
+    \item\quad $c-b = m\cdot q$ when $q = \frac{k}{a}\in\mathbb{Z}$
+    \item\quad $c\equiv b\mod m$
+    \item Hence, (1) $a\cdot x \equiv b\mod m$ will have solution $x\equiv \frac{b}{a}\mod m$ if (2) gcd($a$, $m$) = 1.
+\end{enumerate}
+\pagebreak
+%------------------EX 1
+\noindent\textbf{Example 1.} Solve $6\cdot x\equiv12\mod7$\\
+\indent Since gcd(6, 7) = 1, then $x\equiv2\mod7$\\
+\indent\textbf{Answer:} $x\equiv2\mod7$
+\vspace{0.2in}\\
+%------------------GOAL CON'T
+\noindent\textbf{Goal. (con't)} Solve for $x$\\
+\indent Case 2: $a\nmid b$\\
+\[a\cdot x \equiv b\mod m\]
+\indent Idea: If we can find $\Bar{a}\in\mathbb{Z}$ such that $\Bar{a}a\equiv1\mod m$ then $\Bar{a}ax\equiv x\mod m$.
+\[x\equiv \Bar{a}bc\mod m\]
+%------------------THM 4.3.6
+\begin{framed}
+\noindent$|$ THM 4.4.1\\
+If gcd($a$, $m$) = 1, $m>1$, then there exists $\Bar{a}\in\mathbb{Z}$ unique modulo m such that $\Bar{a}a\equiv1\mod m$.
+\end{framed}
+\noindent\textbf{PROOF}
+\begin{enumerate}[\indent]
+    \item Since gcd($a$, $m$) = 1, then $\exists s,t\in\mathbb{Z}$
+    \item$as+mt=1$
+    \item\quad $\Rightarrow (as+nt) - 1 = 0m$
+    \item\quad $\Rightarrow as + mt \equiv 1\mod m$
+    \item\quad $\Rightarrow as + 0 \equiv 1\mod m$
+    \item\quad $\Rightarrow as\equiv 1\mod m$ because $m|mt$
+    \item so $\Bar{a}$ is actually the Bezout Coefficient of $a$ with $m$.
+\end{enumerate}
+\vspace{0.2in}
+\noindent\textbf{Uniqueness} Assume $\exists u\in\mathbb{Z} such that$
+\begin{enumerate}[\quad]
+    \item\quad $ua\equiv 1\mod m$
+    \item\quad $ua\Bar{a}\equiv\Bar{a}\mod m$ \quad ($a\Bar{a}\equiv 1$)
+    \item\quad $u\equiv\Bar{a}\mod m$
+    \item So $\Bar{a}$ is unique modulo m
+\end{enumerate}
+\vspace{0.2in}
+\noindent\textbf{Summarize} 
+\begin{enumerate}[\quad]
+    \item$ax\equiv b\mod m$
+    \item Requirement: gcd($a$,$m$) = 1
+    \item Case 1: If $a|b$, then $x=\frac{b}{a}\mod m$.
+    \item Case 2: If $a\nmid b$, then $x=\Bar{a}b\mod m$ where $\Bar{a}$ is the Bezout Coefficient(a.k.a. "inverse modulo m") of gcd($a$, $m$).
+\end{enumerate}
+\pagebreak
+%------------------EX 2
+\noindent\textbf{Example 2.} Find the inverse if possible.
+\begin{enumerate}[\quad(a)]
+    \item 3 modulo 7 = -2 $\equiv$ 5 \quad ($-2\mod7=5$)\\
+    \quad $7=2\cdot3+1\Rightarrow1=7-2\cdot3$ where 2 is the Bezout Coefficient of 3\\
+    \quad $3 = 3\cdot1+0$ \\
+    \quad\textbf{Answer:} 5
+    \item 101 modulo 4620\\
+    \quad $4620=45\cdot101+75 \Rightarrow 75=4620-45\cdot101$\\
+    \quad $101 = 1\cdot75+26\Rightarrow26=101-75$\\
+    \quad $75=2\cdot26+23\Rightarrow23=75-2\cdot26$\\
+    \quad $26=1\cdot23+3\Rightarrow3=26-1\cdot23$\\
+    \quad $23=7\cdot3+2\Rightarrow2=23-7\cdot3$\\
+    \quad $3=1\cdot2+1$\quad$\checkmark$\quad$\Rightarrow1=3-2$\\
+    \quad $2=2\cdot1+0$\\
+    ------------------------------------\\
+    \quad $1=3-2 \Rightarrow 3-(23-7\cdot3)$\\
+    \quad $=(8\cdot3)-23\Rightarrow(8(26-23))-23$\\
+    \quad $=8\cdot26-9\cdot23\Rightarrow8\cdot26-9(75-2\cdot26)$\\
+    \quad $=26\cdot26-9\cdot75\Rightarrow26(101-75)-9\cdot75$\\
+    \quad $=26\cdot101-35\cdot78\Rightarrow26\cdot101-35(4620-48\cdot101)$\\
+    \quad $=26\cdot101-35(4620)+1575\cdot101\Rightarrow1601\cdot101-35\cdot4620$\\
+    \quad \textbf{Answer:} $\Bar{a} = 1601$
+\end{enumerate}
+\vspace{0.2in}
+%------------------EX 3
+\noindent\textbf{Example 3.} Solve $3x\equiv4\mod7$
+\begin{enumerate}[\quad]
+    \item * gcd(3, 7) = 1 \quad\checkmark
+    \item * inverse of 3 modulo 7 = 5
+    \item $\Rightarrow5\cdot 3x\equiv5\cdot4\mod7$
+    \item $\Rightarrow x \equiv 20\mod 7$
+    \item $x\equiv6\mod7$
+    \item $x-6=7k$ where $k\in\mathbb{Z}$
+    \item \textbf{Answer:} $x=7k+6$
+\end{enumerate}
+Check
+\begin{enumerate}[\quad]
+    \item $k=0$\quad $x=6$ \quad $3\cdot6\stackrel{?}{=}4\mod7$ \quad \checkmark
+    \item $k=1$\quad $x=13$ \quad $3\cdot13\stackrel{?}{=}4\mod7$ \quad \checkmark
+\end{enumerate}
+\pagebreak
+
+\end{document}
