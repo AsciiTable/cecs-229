@@ -171,5 +171,35 @@ Check
     \item $k=1$\quad $x=13$ \quad $3\cdot13\stackrel{?}{=}4\mod7$ \quad \checkmark
 \end{enumerate}
 \pagebreak
+%------------------GOAL
+\noindent\textbf{Goal.} Solve a system of linear congruences.
+\begin{enumerate}[\quad]
+    \item $x\equiv a_1\mod m_1$
+    \item $x\equiv a_2\mod m_2$
+    \item $x\equiv a_3\mod m_3$
+\end{enumerate}
+OR more compactly...\\
+\indent $x\equiv a_i\mod m_i$ where $i=1,2,3....n$
+\begin{framed}
+\noindent$|$ Chinese Remainder THM\\
+The system
+\[x\equiv a_i\mod m \quad\quad i=1,...,n\]
+has a unique solution modulo $m = m_1\cdot m_2\cdot ... m_n$ provided that:
+\begin{enumerate}[\quad (i)]
+    \item gcd($m_i$, $m_j$) = 1\quad $i\neq j$
+    \item $m_i > 1$
+\end{enumerate}
+\end{framed}
+\noindent\textbf{PROOF}
+\begin{enumerate}[\quad]
+    \item Existence: For $m$ $M_k=\frac{m}{m_k} = m_1\cdot m_2 ... m_{k-1}\cdot m_{k+1} ... m_n$ \quad (Notice that $m_k$ is missing)
+    \item Then gcd($M_k$, $m_k$) = 1\quad i.e. they will be relatively prime.
+    \item By THM 4.4.1, $\exists\Bar{M}_k\in\mathbb{Z}$ such that $\Bar{M}_kM_k\equiv1\mod M_k$. We claim that $x=a_1M_1\Bar{M}_1+a_2M_2\Bar{M}_2+...a_nM_n\Bar{M}_n$ solves the system.
+    \item To show that this is true, notice that for any $j=1,... n$: $M_j\equiv0\mod M_k$ for $j\neq k$
+    \item This is because $M_j=m_1m_2...m_{j-1}m_{j+1}...m_km_{k+1}...m_n$
+    \item So $m_k|M_j$. Then... (anything $M_k$ is going away [= 0])
+    \item $x=a_1M_1\Bar{M}_1+...+a_1M_k\Bar{M}_k+...a_nM_n\Bar{M}_n\equiv 0+0+...+a_1M_k\Bar{M}_k+0...+0\mod m_k$
+    \item $\Rightarrow x=a_kM_k\Bar{M}_k\mod M_k$
+\end{enumerate}
 
 \end{document}
