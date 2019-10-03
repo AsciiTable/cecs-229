@@ -80,7 +80,9 @@ NOTE: This cipher is not very secure because you can break it by:
     \item Brute Force: test every one of the 26 possible shifts
     \item checking letter frequencies w/ popular letters
 \end{enumerate}
-\textbf{\subsection*{*Encryption Function:}}
+\vspace{0.2in}
+\\
+\textbf{*Encryption Function:}
 We can further generalize the encryption function to be of the form:
 \[f(p) = ap+b\mod 26\]
 where $a,b\in\mathbb{Z}$ and gcd($a$, 26) = 1.\\
@@ -90,7 +92,9 @@ This last condition ensures that the function is bijective. (i.e. that there wil
     \item If $a>1$, then we call the function an affine transformation.
 \end{enumerate}
 The key is necessary for easy decryption.
-\textbf{\subsection*{*Decryption Function:}}
+\vspace{0.2in}
+\\
+\textbf{*Decryption Function:}
 \noindent\textbf{Case:} Shift Cipher\\
 \[f^{-1}(q)=q-b\mod26\]
 \noindent\textbf{Case:} Affine Transformation\\
@@ -99,5 +103,71 @@ The key is necessary for easy decryption.
 Since gcd($a$, 26) = 1, $\exists \Bar{a}\in\mathbb{Z}$
 \[\Bar{a}ap\equiv \Bar{a}(q-b)\mod26\]
 \[\Rightarrow p \equiv \Bar{a}(q-b)\mod26\]
-$\therefore$ Decryption Function = $f^{-1}(q)=\Bar{a}(q-b)\mod26$
+$\therefore$ Decryption Function = $f^{-1}(q)=\Bar{a}(q-b)\mod26$\\
+\vspace{0.2in}
+\\
+\noindent\textbf{Example 2.} An Affine transformation was applied with $a=7$ and $b=3$ to encode a letter. The encrypted letter is V. What was the original letter? *Note V = 21
+\[f^{-1}(q) = \Bar{a}(q-3)\mod26\]
+Need: Inverse of $7\mod26$
+\begin{enumerate}[\quad]
+    \item $26=3\cdot7+5\Rightarrow5=26-3\cdot7$
+    \item $7=1\cdot5+2\Rightarrow2=7-5$
+    \item $5=2\cdot2+1\Rightarrow1=5-2\cdot2$
+    \item $2=2\cdot1+0$
+    \item ------
+    \item $1=5-2(7-5)=3\cdot5-2\cdot7$
+    \item $1=3(26-3\cdot7)-2\cdot7=3\cdot26-11\cdot7$
+    \item inverse = -11 = $15\mod26\Rightarrow\Bar{a}=15$
+    \item ------
+    \item $f^{-1}(q) = 15(q-3)\mod26$
+    \item $f^{-1}(21) = 15(21-3)\mod26$
+    \item $=15\cdot18\mod26=45\cdot6\mod26$
+    \item $=(45\mod26)(6\mod26)=114\mod26=10$
+    \item\textbf{Answer:} $k$
+\end{enumerate}
+\vspace{0.2in}
+\\
+\noindent\textbf{II. Transportation Ciphers}\\
+Process
+\begin{enumerate}[1.]
+    \item Divide the string of letters into blocks of a given size and add a padding in the last block if necessary (xx)
+    \item Permute the letters of each block
+\end{enumerate}
+\noindent\textbf{Example 3.} Use the permutation $\sigma:{1,2,3,4}$ defined by $\sigma(1)=3$, $\sigma(2)=1$, $\sigma(3)=4$, $\sigma(4)=2$ to encrypt the message "PIRATE ATTACK".
+\begin{enumerate}[\quad1.]
+    \item PIRA TEAT TACK
+    \item IAPR ETTA AKTC
+\end{enumerate}
+\quad\textbf{Answer: }IAPRETTAAKTC
+\vspace{0.2in}
+\\
+\noindent\textbf{Example 4.} Decrypt the message SWUE TRAE OEHS if the encryption that was used $\sigma(1)=3$, $\sigma(2)=1$, $\sigma(3)=4$, $\sigma(4)=2$
+\begin{enumerate}[\quad]
+    \item $\sigma^{-1}(1)=2$, $\sigma^{-1}(2)=4$, $\sigma^{-1}(3)=4$, $\sigma^{-1}(4)=3$
+    \item USEW ATER HOSE
+    \item\textbf{Answer:} Use Water Hose
+\end{enumerate}
+\begin{framed}
+\noindent\textbf{DEF} $|$ Cryptosystem\\
+A cryptosystem is a 5-tuple $(P,C,K,E,D)$ where
+\begin{enumerate}[\quad]
+    \item P: set of plaintext strings
+    \item C: set of ciphertext strings
+    \item K: set of possible keys
+    \item E: set of encryption functions
+    \item D: set of decryption functions
+\end{enumerate}
+Given some key $k \in K$
+\begin{enumerate}[$\cdot$]
+    \item $E_k\in E$ is an encryption function with key $K$
+    \item $D_k\in D$ is a decryption function with key $K$
+\end{enumerate}
+\end{framed}
+\pagebreak
+\noindent\textbf{Example 5.} Describe the family of shift ciphers as a cryptosystem.
+\begin{enumerate}[\quad]
+    \item $C=K=P={00,01,...,25}=\mathbb{Z}_{26}$ 
+    \item $E={p+b\mod26|q,b\in\mathbb{Z}_{26}}$
+    \item $D={q-b\mod26|q,b\in\mathbb{Z}_{26}}$
+\end{enumerate}
 \end{document}
