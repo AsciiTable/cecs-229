@@ -1,0 +1,103 @@
+\documentclass [12pt]{article}
+\setlength{\oddsidemargin}{0.1in}
+\setlength{\evensidemargin}{0.1in}
+\setlength{\topmargin}{-.7in}
+\setlength{\textheight}{9.25in}
+\setlength{\textwidth}{6.5in}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{enumerate}
+\usepackage{framed}
+\usepackage{epsfig}
+\usepackage{changebar}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\graphicspath{ {images/} }
+\usepackage{listings}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{multicol}
+\usepackage{mathtools}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\setlength{\columnsep}{1cm}
+% mathematical commands
+\newcommand{\zos}{{\{ 0,1\}^{\ast}}}
+\newcommand{\zoi}{{\{ 0,1\}^{\infty}}}
+\newcommand{\zon}{{\{ 0,1\}}}
+\newcommand{\zov}[1]{{\{ 0,1\}^{#1}}}
+\newcommand{\ccc}{{{\cal C}}}
+\newcommand{\gggg}{{{\cal G}}}
+\newcommand{\nat}{{{\cal N}}}
+\newcommand{\rr}{{{\bf RAND}}}
+\newcommand{\pref}{{\sqsubset}}
+\newcommand{\da}{{\downarrow}}
+\newcommand{\ot}{{\otimes}}
+\newcommand{\fann}{{\forall n\in \nat}}
+\newcommand{\pow}{{{\cal P}}}
+\newcommand{\nll}{{{\bf NULL}}}
+\newcommand{\nvc}[1]{{{\bf e_{#1}}}}
+\newcommand{\st}{{\Sigma_{2}^{A}}}
+\newcommand{\ov}[1]{{\overline{#1}}}
+\newcommand{\provided}{{\hspace{.1in}:-\hspace{.1in}}}
+\begin{document}
+\begin{center}\title*{\Large \S \; 4.6 Encryption}\\\author*{Jessica Wei} \end{center}
+\normalsize
+\noindent
+%-------------Encryption
+\textbf{\subsection*{Encryption}}
+\begin{framed}
+\noindent\textbf{DEF} $|$ Encryption\\
+The process by which a message is made secret.
+\end{framed}
+\textbf{\subsection*{Classic Cryptography}}
+\noindent\textbf{I. Shift and Affine Ciphers}\\
+Process
+\begin{enumerate}[\quad1.]
+    \item Assign a numeric value to each letter\\
+    \quad ${A,B,...,Z} \Rightarrow {00,01,...25}$
+    \item Apply a shift $k$ to the value that only the intended recipient knows about
+\end{enumerate}
+\textbf{Example 1.} Julius Cesar
+\begin{enumerate}[\quad]
+    \item Encrypted messages by shifting each letter three letters over. Use this shift to encrypt
+    \item "MEET YOU IN THE PARK"
+\end{enumerate}
+\begin{enumerate}[\quad\quad1.]
+    \item M E E T Y O U  I N  T H E  P A R K\\
+    12 4 4 19 24 14 20 8 13 19 7 4 15 0 17 10
+    \item 15 7 7 22 1 17 23 11 16 22 10 7 18 3 20 13\\
+    \textbf{Answer: }PHHW BRX LQ RXL QWKHSDUN
+\end{enumerate}
+For this particular example, we can express an encryption function that describes the rule applied to each letter: 
+\[f(x)=p+3\mod26\]
+where $p\in{00,01,...,25}$\\
+NOTE: This cipher is not very secure because you can break it by:
+\begin{enumerate}[i)]
+    \item Brute Force: test every one of the 26 possible shifts
+    \item checking letter frequencies w/ popular letters
+\end{enumerate}
+\textbf{\subsection*{*Encryption Function:}}
+We can further generalize the encryption function to be of the form:
+\[f(p) = ap+b\mod 26\]
+where $a,b\in\mathbb{Z}$ and gcd($a$, 26) = 1.\\
+This last condition ensures that the function is bijective. (i.e. that there will be an inverse function to decrypt)\\
+\begin{enumerate}[*]
+    \item If $a=1$, $f(p)=p+b\mod26$, then we have a shift cipher with key $b$
+    \item If $a>1$, then we call the function an affine transformation.
+\end{enumerate}
+The key is necessary for easy decryption.
+\textbf{\subsection*{*Decryption Function:}}
+\noindent\textbf{Case:} Shift Cipher\\
+\[f^{-1}(q)=q-b\mod26\]
+\noindent\textbf{Case:} Affine Transformation\\
+\[q=ap+b\mod26 \Rightarrow ap+b=q\mod26\]
+\[ap\equiv q-b\mod26\]
+Since gcd($a$, 26) = 1, $\exists \Bar{a}\in\mathbb{Z}$
+\[\Bar{a}ap\equiv \Bar{a}(q-b)\mod26\]
+\[\Rightarrow p \equiv \Bar{a}(q-b)\mod26\]
+$\therefore$ Decryption Function = $f^{-1}(q)=\Bar{a}(q-b)\mod26$
+\end{document}
