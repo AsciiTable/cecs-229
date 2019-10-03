@@ -81,8 +81,8 @@ NOTE: This cipher is not very secure because you can break it by:
     \item checking letter frequencies w/ popular letters
 \end{enumerate}
 \vspace{0.2in}
-\\
-\textbf{*Encryption Function:}
+
+\noindent\textbf{*Encryption Function:}\\
 We can further generalize the encryption function to be of the form:
 \[f(p) = ap+b\mod 26\]
 where $a,b\in\mathbb{Z}$ and gcd($a$, 26) = 1.\\
@@ -93,8 +93,8 @@ This last condition ensures that the function is bijective. (i.e. that there wil
 \end{enumerate}
 The key is necessary for easy decryption.
 \vspace{0.2in}
-\\
-\textbf{*Decryption Function:}
+
+\noindent\textbf{*Decryption Function:}\\
 \noindent\textbf{Case:} Shift Cipher\\
 \[f^{-1}(q)=q-b\mod26\]
 \noindent\textbf{Case:} Affine Transformation\\
@@ -126,8 +126,8 @@ Need: Inverse of $7\mod26$
     \item\textbf{Answer:} $k$
 \end{enumerate}
 \vspace{0.2in}
-\\
-\noindent\textbf{II. Transportation Ciphers}\\
+
+\noindent\textbf{II. Transportation Ciphers}
 Process
 \begin{enumerate}[1.]
     \item Divide the string of letters into blocks of a given size and add a padding in the last block if necessary (xx)
@@ -170,4 +170,109 @@ Given some key $k \in K$
     \item $E={p+b\mod26|q,b\in\mathbb{Z}_{26}}$
     \item $D={q-b\mod26|q,b\in\mathbb{Z}_{26}}$
 \end{enumerate}
+\textbf{\subsection*{RSA}}
+\begin{framed}
+\noindent\textbf{DEF} $|$ Private Cryptosystem\\
+A cryptosystem where knowing a key allows you to find the decryption function.
+\end{framed}
+\begin{framed}
+\noindent\textbf{DEF} $|$ Public Cryptosystem\\
+A cryptosystem where knowing a key does not reveal the decryption function.
+\end{framed}
+\noindent\textbf{Key:} $(n,e)$ where $n,e\in\mathbb{Z}$
+\begin{enumerate}[\quad(i)]
+    \item $n=p\cdot q$ where $p,q\in\mathbb{Z}$\quad primes(200+ digits)
+    \item $e$ satisfies gcd($e$, $(p-1)(q-1)$) = 1
+\end{enumerate}
+\noindent\textbf{Encryption Function:}
+\[c=m^e\mod n\]
+\noindent\textbf{Process:}
+\begin{enumerate}[\quad1.]
+    \item ${A,B,...Z}\Rightarrow {00,01,...25}$
+    \item Concatenate the digits into blocks of even size (all blocks must be the same size)\\
+    \quad *In practical applications, the block size depends on key size\\
+    \quad *In our case, adopt the convention that size = \# of digits in 2525..25 where 2525..25$<n$\\
+    \quad e.g. $n = 3821$ $\Rightarrow$ $2525<3821\Rightarrow5=4$
+    \item Apply the encryption function to each block $m_i$
+    \[c_i = m_i^e\mod n\]
+    \item Concatenate the cipher block $c$
+\end{enumerate}
+\noindent\textbf{Example 6.} Encrypt "STOP", key: (2537,13)
+\begin{enumerate}[\quad1.]
+    \item STOP $\rightarrow$ 18191415
+    \item $n=2547$, $2525<2537\Rightarrow$ size = 4\\
+    \quad $m_1=1819$, $m_2=1415$
+    \item $c_1=1819^{13}\mod2537=2081$\\
+    \quad $c_2=1415^13\mod2537=2182$
+    \item \textbf{Cipher:} 20812182
+\end{enumerate}
+\pagebreak
+\noindent\textbf{Decryption}\\
+\textbf{*Goal:} $c=m^e\mod n$ obtain $m\in$ plaintext digits\\
+Information about key:
+\begin{enumerate}[\quad(1)]
+    \item $n=p\cdot q$ where $p,q$ are primes
+    \item gcd($e$, $(p-1)(q-1)$) = 1
+\end{enumerate}
+Consider (2), we are able to find an inverse of $e,\Bar{e}_i\mod (p-1)(q-1)$ i.e.\\
+\[e\Bar{e}-1=(p-1)(q-1)k\quad\quad k\in\mathbb{Z}\]
+\[e\Bar{e}=(p-1)(q-1)k+1\]
+\[c\equiv m^e\mod n\]
+\[c^{\Bar{e}}\equiv (m^e)^{\Bar{e}}\mod n\]
+\[c^{\Bar{e}}\equiv m^{e{\Bar{e}}}\mod n\]
+\[c^{\Bar{e}}\equiv m^{(p-1)(q-1)k+1}\mod n\quad\quad m^{a+b}\equiv m^a\cdot m^b\]
+\[c^{\Bar{e}}\equiv m^{(p-1)(q-1)k}\mod n\]
+\[\Rightarrow c^{\Bar{e}}-m^{(p-1)(q-1)k}\cdot m = ny\quad\quad y\in\mathbb{Z}\]
+\[\Rightarrow c^{\Bar{e}}=ny+m^{(p-1)(q-1)k}\cdot m\]
+\[\Rightarrow c^{\Bar{e}}=pqy+m^{(p-1)(q-1)k}\cdot m\]
+\[\Rightarrow c^{\Bar{e}}=m^{(p-1)(q-1)k}\cdot m\mod p\]
+\[\Rightarrow c^{\Bar{e}}=m^{(p-1)(q-1)k}\cdot m\mod q\]
+\vspace{0.2in}
+
+
+\noindent Recall FLT: If $p$ is prime \& $p\nmid a$ then $a^{p-1}\equiv 1\mod p$\\
+\noindent\textbf{Case 1.} $p\nmid m$ and $q\nmid m$\\
+\quad $m^{p-1}\equiv1\mod p$ and $m^{q-1}\equiv1\mod q$ (5)\\
+Hence by (5), we obtain the system
+\[c^{\Bar{e}}=(m^{(p-1)})^{(q-1)k}\cdot m\mod p = 1^{(q-1)k}\cdot ,\mod p\equiv m\mod p\]
+\[\Rightarrow c^{\Bar{e}}\equiv m\mod p\]
+\[*c^{\Bar{e}}\equiv(m^{(q-1)})^{(p-1)k}\cdot m \mod q \equiv 1^{(q-1)k}\cdot m\mod q\]
+\[c^{\Bar{e}}\equiv m\mod q\]
+\[c^{\Bar{e}}\equiv m\mod p\]
+\[c^{\Bar{e}}\equiv m\mod q\]
+Solve this System of Congruence to obtain plaintext block $m$
+\pagebreak
+Solving by substitution results in the substitution
+\[m=c^{\Bar{e}}\mod n\]
+\noindent\textbf{Case 2.} $p|m$ or $q|m$ (rarely ever happens)\\
+Use CRT to show that 
+\[c^{\Bar{e}\equiv m^{(p-1)(q-1)k}}\cdot m\mod p\]
+\[c^{\Bar{e}\equiv m^{(p-1)(q-1)k}}\cdot m\mod q\]
+still results in the same decryption function.\\
+\vspace{0.2in}
+
+\noindent\textbf{Summary of RSA}\\
+*Encryption key ($n$, $e$) where $n = p\cdot q$ where $p,q$ are primes
+*Encryption Function: $c=m \mod m$ where m = block of letters in digit form $25\cdot25\cdot25<n$ if digits = size of block\\
+\vspace{0.1cm}
+
+\noindent*Decryption Function \\
+\quad $e=m^{\Bar{e}\mod n}$\\
+\quad e = inverse of $e\mod(p-1)(q-1)$\\
+\vspace{0.2in}
+
+\noindent\textbf{Example 7.} Decrypt 09810461 with key(2537, 13)
+\begin{enumerate}[\quad1.]
+    \item $p=43$, $q=59$, $2537=43\cdot59$
+    \item $\Bar{e}\cdot13\equiv1\mod42\cdot58$\\
+    \quad $\Bar{e}\cdot13\equiv1\mod2436$\\
+    \quad $937\cdot13-5\cdot2436=1\Rightarrow\Bar{e}=937$
+    \item $2525 < 2537\rightarrow$ block size = 4
+    \item $m_1 = 0981$, $m_2=0461$\\
+    \quad $c_1=m_1^{\Bar{e}}\mod n\Rightarrow c_1 = 981^{937}\mod2537=704$\\
+    \quad $c_2=m_2^{\Bar{e}}\mod n\Rightarrow c_2=461^{937}\mod2537=1115$
+    \item 07041115 = HELP
+\end{enumerate}
+*Note: RSA is considered a public cryptosystem because even though $(n,e)$ is public, finding the prime factorization of $n$ is impossible within a reasonable amount of time where $n$ is very large.\\
+RSA - 768 Case: $n$ had 232 digits and it took several computers 2 years to find the factorization. If 1 computer had done it alone, it wouldve have taken 2,000 years.
 \end{document}
