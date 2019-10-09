@@ -44,9 +44,94 @@
 \newcommand{\ov}[1]{{\overline{#1}}}
 \newcommand{\provided}{{\hspace{.1in}:-\hspace{.1in}}}
 \begin{document}
-\begin{center}\title*{\Large \S \; 1.1 - 1.5 Fields}\\\author*{Jessica Wei} \end{center}
+\begin{center}\title*{\Large \S \; 1.1 - 1.5 Intro to Fields}\\\author*{Jessica Wei} \end{center}
 \normalsize
 \noindent
 %-------------Fields
 \textbf{\subsection*{Fields}}
+\begin{framed}
+\textbf{DEF} $|$ Field\\
+A field F is a set of values with defined operations for addition and multiplication. The operations satisfy the following:
+\begin{enumerate}[\quad(i)]
+    \item Closure: for $x, y\in\mathbb{Z}$\\
+    \quad $x+y\in F$\\
+    \quad $xy\in F$
+    \item Commutative\\
+    \quad $x+y = y + x$\\
+    \quad $xy = yx$
+    \item Associative; $z\in\mathbb{F}$\\
+    \quad $x+y + z = x + (y + z)$\\
+    \quad $(xy)z = x(yz)$
+    \item Identity element I\\
+    \quad $x+ I_+ = I_+ + x = x$ for any element x\\
+    \quad $x\cdot I_+ = I_x\cdot x = x$
+    \item Inverse Element\\
+    \quad $x+\Bar{x} = I_+$ for every $x\in F$ \\
+    \quad $x\cdot \hat{x} = I_x$
+    \item Distributive Identity: $x,y,z\in F$\\
+    \quad $x(y+z) = xy + xz$
+\end{enumerate}
+\end{framed}
+\vspace{0.2in}
+
+\noindent\textbf{Example 1.} Verify that the set of real numbers $\mathbb{R}$ is a field.\\
+\begin{enumerate}[\quad(i)]
+    \item For any two real numbers $x,y\in\mathbb{R}$\\
+    \quad $x+y\in\mathbb{R}$, $xy\in\mathbb{R}$
+    \item $x+y = y+x$ is TRUE\\
+    \quad$xy = yx$ is TRUE
+    \item Associativity\\
+    \quad $(x+y) + z = x+(y + z)$
+    \item Identity\\
+    \quad $x+0=0+x=x$ \quad 0 is identity element under $I_+$\\
+    \quad $x\cdot 1=1\cdot x=x$\quad $I_x = 1$
+    \item Inverse\\
+    \quad $x+(-x)=0\quad$ where $-x\in\mathbb{R}$ is the additive inverse\\
+    \quad $x(\frac{1}{x}) = 1$ \quad $\frac{1}{x}\in\mathbb{R}$ is the multiplicative inverse as long as $x\neq 0$
+    \item Distributive\\
+    \quad $x(y+z) = xy+xz$ \quad i.e. $2(3+4) = 2(7) = 2\cdot3 + 2\cdot4 = 14$
+\end{enumerate}
+\vspace{0.2in}
+\noindent\textbf{Example 2.} Is $\mathbb{Z}$ a field under the usual definitions of $+$ and $\cdot$?\\
+\indent No. For any integer $a\in\mathbb{Z}$, it is not possible to find a multiplicative inverse $a \in\mathbb{Z}$ such that $a\hat{a} = 1$.
+\vspace{0.2in}
+\begin{framed}
+\textbf{DEF} $|$ Complex Numbers\\
+The set of complex numbers $C$ is the set of numbers of the form 
+\[a+bi\]
+where $a$ is the real part, $bi$ is the imaginary part, and $i^2=-1$.\\
+*Note $\mathbb{C}$ is a field under the following operations:\\
+\begin{enumerate}[\quad]
+    \item For $z_1,z_2\in\mathbb{C}$:\\
+    \quad Addition: $z_1+z_2 = (a_1+b_i) + (a_2+b_2i) = (a_1+a_2) + (b_1+b_2)i$\\
+    \quad Multiplication: $z_1z_2=(a_1+b_1i)(a_2+b_2i)=a_1a_2+a_1b_2i+a_2b_1i+b_1b_2i^2$\\
+    \quad $= (a_1a_2 - b_1b_2) + (a_1b_2+a_2b_1)i$
+\end{enumerate}
+\end{framed}
+\vspace{0.2in}
+\noindent\textbf{Example 3.} Perform the operation 
+\begin{enumerate}[\quad(a)]
+    \item $(3+2i)+(1+i)=(3+1)+(2+1)i=4+3i$
+    \item $(3+2i)(7-5i)=21-15i+14i+10=31- i$
+    \item $(3+2i)(3-2i)=9-6i+6i+4=13$
+    \item $\frac{31-i}{7-5i} \cdot \frac{7-5i}{7-5i} = \frac{(217+155i-7i-5)}{49 + 25}=\frac{222+148i}{74} = \frac{222}{74} + \frac{148}{74}i = 3+2i$
+\end{enumerate}
+\pagebreak
+\textbf{\subsection*{Visualizing Complex Numbers}}
+\noindent Imaginary is on the y axis, real is on the x axis. We represent $3+2i$ as a vector $\overrightarrow{z}$ on the coordinate plane. Suppose that $z=a+bi$ is any complex number. \\
+\indent $\Rightarrow tan\theta=\frac{b}{a}$\\
+\indent $\Rightarrow |\overrightarrow{z}|=\sqrt{a^2+b^2} = \sqrt{z\Bar{z}}$\\
+\indent Notice that $(a+bi)(a-bi) = a^2+b^2$ and $\Bar{z}$ is conjugate\\
+$cos\theta=\frac{a}{|\overrightarrow{z}|}$, $sin\theta=\frac{b}{|\overrightarrow{z}|}$\\
+$cos^2\theta=\frac{a^2}{|\overrightarrow{z}|^2}$, $sin^2\theta=\frac{b^2}{|\overrightarrow{z}|^2}$\\
+\begin{enumerate}
+    \item $1=cos^2\theta + sin^2\theta = \frac{a^2}{|\overrightarrow{z}|^2} + \frac{b^2}{|\overrightarrow{z}|^2}$\\
+    $\Rightarrow a^2+b^2 = |\overrightarrow{z}|^2$
+    \item $a=|\overrightarrow{z}|cos\theta$, $b=|\overrightarrow{z}|sin\theta$\\
+    $z=a+bi = |\overrightarrow{z}|cos\theta + |\overrightarrow{z}|sin\theta i$\\
+    $=|\overrightarrow{z}|(cos\theta + sin\theta)$
+\end{enumerate}
+Euler's Identity: $e^{ie}=cos\theta+sin\theta$\\
+\[\Rightarrow z=|\overrightarrow{z}|e^{i\theta}\]
+where $|\overrightarrow{z}|=\sqrt{a^2+b^2}$ and $tan\theta=\frac{b}{a}$
 \end{document}
