@@ -133,5 +133,75 @@ $cos^2\theta=\frac{a^2}{|\overrightarrow{z}|^2}$, $sin^2\theta=\frac{b^2}{|\over
 \end{enumerate}
 Euler's Identity: $e^{ie}=cos\theta+sin\theta$\\
 \[\Rightarrow z=|\overrightarrow{z}|e^{i\theta}\]
-where $|\overrightarrow{z}|=\sqrt{a^2+b^2}$ and $tan\theta=\frac{b}{a}$
+where $|\overrightarrow{z}|=\sqrt{a^2+b^2}$ and $tan\theta=\frac{b}{a}$\\
+$\Rightarrow z=re^{i\theta}$
+
+\textbf{\subsection*{Translations}}
+\begin{framed}
+    \noindent\textbf{DEF} $|$ Translations\\
+    Define $f(z) = z+ z_1$ where $z_1=a_1+b_1i$ is given (constant). Then $f(z)$ describes a translation: 
+    \[f(z)=z+z_1\]
+    \[=(a+bi)+(a_1b_1i)\]
+    \[=(a+a_1)+(b+b_1)i\]
+e.g. $a_1 = 2$, $b_1 = 3$\\
+Add $a_1,b_1$ to original values of $a,b$ on the graph. In this case, the point/vector representing $z=a+bi$ has shifted \textbf{2 units right} and \textbf{3 units up}.\\
+\vspace{0.1in}
+
+\noindent In general for $z_1 = a_1+b_1i$, we have the following cases:\\
+$a_1>0\quad$ shift right\\
+$a_1 = 0\quad$ no horizontal shift\\
+$a_1 < 0\quad$ shift left\\
+
+\noindent$b_1>0\quad$ shift up\\
+$b_1 = 0\quad$ no vertical shift\\
+$b_1 < 0\quad$ shift down\\
+\end{framed}
+Let $f_1(z)=z+z_1\&f_2(z)=z+z_2,z_1,z_2\in\mathbb{C}$ given"
+\[f_1of_2=f_1(f_2(z))=f_1(z+z_2)=z+z_2+z_1\]
+\[=z+w\]
+where $w = z_2+z_1$. Also describes a translation and $f_2of_1=f_1of_2$
+
+\textbf{\subsection*{Scaling \& Rotation}}
+\begin{framed}
+\noindent\textbf{DEF} $|$ Scaling 
+Define $h(z)=\alpha z$ where $\alpha\in\mathbb{R}$\\
+Notice $|h(z)|=|\alpha z|=|\alpha(a+bi)|  = |a\alpha+b\alpha i|$\\
+\[=\sqrt{(a\alpha)^2+(b\alpha)^2}\]
+\[=\sqrt{a^2\alpha^2+b^2\alpha^2}\]
+\[=\sqrt{a^2(\alpha^2+b^2)}\]
+\[ = |\alpha||z|\]
+Hence multiplying $z\in\mathbb{C}$ by a scalar $\alpha$, scales the magnitude of $z$.\\
+Cases:\\
+$\alpha > 1\quad$ extends the line straight along its original path (magnitude increases)\\
+e.g. $z=2.5+2i$ and $\alpha = 2$
+\[2z=5+4i\]
+$0<\alpha<1\quad$ shrinks the line straight along its original path (magnitude decreases)\\
+e.g. $z=2.5+2i$ and $\alpha = \frac{1}{2}$
+\[\frac{1}{2}z=1.25+1i\]
+$-1 <\alpha < 0\quad$ reverses direction and shrinks the line (rotation by 180 and shrinking in)
+e.g. $z=2+4i$ and $\alpha = \frac{1}{2}$
+\[-\frac{1}{2}z=-1-2i\]
+$\alpha < -1\quad$ reverse direction and expands (rotation by 180 and magnitude increases)\\
+e.g. $z=2.5+2i$ and $\alpha = -1$
+\[-1z=2.5+2i\]
+\end{framed}
+
+\begin{framed}
+    \noindent\textbf{DEF} $|$ Rotations by $\tau$ rad.\\
+    Recall $z=re^{i\theta}$\\
+    To obtain a rotated point/vector,
+    \[w=re^{i(\theta+\tau)}\]
+    To scale out by a factor of 2 and rotate by $\frac{\pi}{3} rad.$
+    \[w=2re^{i(\pi+\frac{\pi}{3})}\]
+\end{framed}
+\noindent\textbf{Example 4.} What is the result of scaling $z=1+i$ by $\alpha=3$ and rotating $\frac{pi}{2}$ rad?\\
+\[z=re^{i\theta}\]
+\[r=\sqrt{1^2+1^2} = \sqrt{2}\]
+\[\theta = tan^{-1}(1) = \frac{\pi}{4}\]
+\[z=\sqrt{2}e^{i\frac{\pi}{4}}\]
+\[w=3\sqrt{2}e^{i(\frac{pi}{4}) + \frac{\pi}{2}}\]
+\[= 3\sqrt{2}e^{\frac{3\pi}{4}}\]
+\[=3\sqrt{2}(cos(\frac{3\pi}{4})+sin(\frac{3\pi}{4}))\]
+\[=-3+3i\]
+
 \end{document}
