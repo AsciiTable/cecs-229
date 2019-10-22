@@ -1,0 +1,65 @@
+class Vec:
+    def __init__(self, contents = []):
+        self.elements = contents
+        return
+        
+    def __add__(self, other):
+        """Overloads the + operation to support Vec + Vec"""
+        if len(self.elements) == len(other.elements):
+            s = [self.elements[i]+other.elements[i] for i in range(len(self.elements))]
+            return s
+        else: 
+            print("ERROR: Vectors must be same length")
+            return None
+    
+    def __mul__(self, other):
+        """Overloads the * operation to support 
+            - Vec * Vec (dot product)
+            - Vec * float (component-wise product)
+            - Vec * int (component-wise product)
+        """
+        if type(other) == Vec: #define dot product
+            if len(self.elements) == len(other.elements):
+                d = 0
+                for i in range(len(self.elements)):
+                    d += self.elements[i] * other.elements[i]
+                return d
+            else:
+                print("ERROR: Vectors must be same length.")
+                return None
+        elif type(other) == float or type(other) == int:
+            s = [self.elements[i] * other for i in range(len(self.elements))]
+            return Vec(s)
+    
+    def __rmul__(self, other):
+        """Overloads the * operation to support 
+            - float * Vec
+            - int * Vec
+        """
+        if type(other) == float or type(other) == int:
+            s = [self.elements[i] * other for i in range(len(self.elements))]
+            return Vec(s)
+        else:
+            print("ERROR: Incompatible types.")
+    
+    def __str__(self):
+        """returns string representation of this Vec object"""
+        return str(self.elements)
+    
+    def __sub__(self, other):
+        """Overloads the - operation to support Vec - Vec"""
+        if len(self.elements) == len(other.elements):
+            s = [self.elements[i]-other.elements[i] for i in range(len(self.elements))]
+            return s
+        else: 
+            print("ERROR: Vectors must be same length")
+            return None
+        
+    def __abs__(self):
+        s = [self.elements[i]**2 for i in range(len(self.elements))]
+        res = 0
+        for i in range (len(s)):
+            res += s[i]
+        res = res**0.5
+        return res
+    
