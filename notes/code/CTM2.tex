@@ -1,0 +1,225 @@
+\documentclass [12pt]{article}
+\setlength{\oddsidemargin}{0.1in}
+\setlength{\evensidemargin}{0.1in}
+\setlength{\topmargin}{-.7in}
+\setlength{\textheight}{9.25in}
+\setlength{\textwidth}{6.5in}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{enumerate}
+\usepackage{framed}
+\usepackage{epsfig}
+\usepackage{changebar}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\graphicspath{ {images/} }
+\usepackage{listings}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{multicol}
+\usepackage{mathtools}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\setlength{\columnsep}{1cm}
+% mathematical commands
+\newcommand{\zos}{{\{ 0,1\}^{\ast}}}
+\newcommand{\zoi}{{\{ 0,1\}^{\infty}}}
+\newcommand{\zon}{{\{ 0,1\}}}
+\newcommand{\zov}[1]{{\{ 0,1\}^{#1}}}
+\newcommand{\ccc}{{{\cal C}}}
+\newcommand{\gggg}{{{\cal G}}}
+\newcommand{\nat}{{{\cal N}}}
+\newcommand{\rr}{{{\bf RAND}}}
+\newcommand{\pref}{{\sqsubset}}
+\newcommand{\da}{{\downarrow}}
+\newcommand{\ot}{{\otimes}}
+\newcommand{\fann}{{\forall n\in \nat}}
+\newcommand{\pow}{{{\cal P}}}
+\newcommand{\nll}{{{\bf NULL}}}
+\newcommand{\nvc}[1]{{{\bf e_{#1}}}}
+\newcommand{\st}{{\Sigma_{2}^{A}}}
+\newcommand{\ov}[1]{{\overline{#1}}}
+\newcommand{\provided}{{\hspace{.1in}:-\hspace{.1in}}}
+\begin{document}
+\begin{center}\title*{\Large \S \; 2 Vectors}\\\author*{Jessica Wei} \end{center}
+\normalsize
+\noindent
+%-------------Fields
+\textbf{\subsection*{Vector}}
+\begin{framed}
+\noindent\textbf{DEF} $|$ n-Vector\\
+Let $\mathbb{F}$ be a field, we call an element 
+\[x_1,x_2,...x_n\in\mathbb{F}\times\mathbb{F}\times\mathbb{F}...\times\mathbb{F} = \mathbb{F}^n\]
+an n-vector\\
+You can think of a vector $\overrightarrow{v}\in\mathbb{F}^n$ as a function
+\[1\longrightarrow x_1\]
+\[2\longrightarrow x_2\]
+\[n\longrightarrow x_n\]
+OPERATIONS\\
+\begin{enumerate}
+    \item Vector Addition: $\overrightarrow{v},\overrightarrow{w}\in\mathbb{F}^n$\\
+    $\overrightarrow{v} + \overrightarrow{w} = [v_1+w_1+v_2+w_2+...v_n+w_n] = \overrightarrow{u}$
+    \item Scalar-vector multiplication: Let $\alpha\in\mathbb{F}$\\
+    $\alpha\overrightarrow{v} =[av_1, av_2,... \alpha vn]$
+\end{enumerate}
+\end{framed}
+
+ExAMPLE 1 GET FROM SOMEONE ELSE B>C I MISSED IT\\
+\noindent\textbf{Example 1. }
+
+\noindent\textbf{Example 2. }
+\begin{enumerate}[\quad(a)]
+    \item How can we span the line segment $(0,0)$ to $(1,1)$ using $\overrightarrow{v}=[1,1]$? NOTE: Span means generate every point.\\
+    \textbf{Answer. } $\frac{1}{2}[1,1] = [\frac{1}{2},\frac{1}{2}] \longrightarrow$ generates $(\frac{1}{2},\frac{1}{2})$\\
+    $0.01[1,1] = [0.01,0.01] \longrightarrow$ generates $(0.01,0.01)$\\
+    \quad${\alpha [1,1]|o\leq\alpha\leq1}$
+    \item How can we span the line segment from $(0.5,1)$ to $(3.5,3)$?\\
+    \textbf{Answer. } The slope of the line segment is going to be given by 
+    \[m=\frac{3-1}{3.5-0.5}=\frac{2}{3}\]
+    This has the same slope as the line segment from $(0,0)$ to $(3,2)$. Therefore, the vector $[3,2]$ runs parallel to the given line segment. This implies 
+    \[\alpha [3,2]\quad 0\leq\alpha\leq1\]
+    will generate the line segment $(0,0)$ to $(3,2)$.\\
+    Hence, $\alpha[3,2]+[0.5,1]$ will generate the line segment $(0.5, 1)$ to $(3.5, 3)$ for $0\leq\alpha\leq1$
+    \[[3\alpha,2\alpha]+[0.5,1]=[3\alpha+0.5,2\alpha+1\]
+    \[{[3\alpha+0.5,2\alpha+1]|\quad0\leq\alpha\leq1]}\]
+\end{enumerate}
+
+\begin{framed}
+\textbf{DEF} $|$ Convex Combination\\
+Let $\alpha,\beta\in\mathbb{F}$ and $\overrightarrow{u},\overrightarrow{w}\in\mathbb{F}$\\
+The vector $\overrightarrow{u}\in\mathbb{F}^n$
+\[\overrightarrow{u}=\alpha\overrightarrow{u}+\beta\overrightarrow{w}\]
+is called a convex combination if $\alpha+\beta=1$
+\end{framed}
+\textbf{Example 3. } Express the line segment between $(0.5,1)$ and $(3.5, 3)$ as a convex combination of $\overrightarrow{v}=[0.5,1]$ and $\overrightarrow{w}=[3.5,3]$\\
+From Ex2(b), $\alpha[3,2]\longrightarrow[0.5, 1]$ spans the segment.
+\[\alpha ([3.5,3]-[0.5,1])+[0.5,1]\]
+\[\alpha[3.5,3]-\alpha[0.5,1]+[0.5,1]\]
+\[\alpha[3.5,3]+(1-\alpha)[0.5,1]\]
+\[\alpha[3.5,3] + \beta[0.5,1]\]
+where $\beta=1-\alpha$ and = 1
+\begin{framed}
+\textbf{DEF} $|$ Dot Product\\
+Let $\overrightarrow{v},\overrightarrow{w}\in\mathbb{F}^n$
+\[\overrightarrow{v}\cdot\overrightarrow{w}=v_1w_1+v_2w_2+...v_nw_n\]
+\end{framed}
+\noindent\textbf{Example 4. } Find $\overrightarrow{u}\cdot\overrightarrow{w}$\\
+\indent$\overrightarrow{u} = [2,3,4], \overrightarrow{2}=[-1,1]$\\
+\quad$\overrightarrow{u}\cdot\overrightarrow{w} = 2 - 2 + 0 + 4 = 2$\\
+\textbf{Example 5.} Express the equation 
+\[a_1x_1+a_2x_2...a_nx_n=c\]
+as a dot product of two vectors. 
+Let \[\overrightarrow{a}=[a_1,a_2...a_n]\]
+\[\overrightarrow{x}=[x_1,x_2...x_n]\]
+\[\overrightarrow{a}\cdot\overrightarrow{x}=c\]
+
+\begin{framed}
+\textbf{DEF} $|$ Vector Space\\
+A set of V vectors is called vector space if it satisfies 
+\begin{enumerate}
+    \item that if contains a zero vector $\overrightarrow{0}\in\mathbb{V}$\\
+    a) $A\overrightarrow{u}\in V\quad \overrightarrow{u}\overrightarrow{0} = \overrightarrow{u}$\\
+    b)$\overrightarrow{u} - \overrightarrow{u} = \overrightarrow{0}$
+    \item For any $\alpha \in\mathbb{F}$ and for any $\overrightarrow{v}\in V$
+    \[\alpha \overrightarrow{v}\in V\]
+    closed under scalar multiplication
+    \item A$\overrightarrow{u} + \overrightarrow{w}\in V$
+    closed under vector addition
+\end{enumerate}
+\end{framed}
+\textbf{Example 5. } Is $\mathbb{R}^5$ a vector space?
+\[\mathbb{R}^5 = {[x_1,x_2,x_3,x_4,x_5]|x_i\in\mathbb{R}}\]
+\begin{enumerate}
+    \item Pick $\overrightarrow{x}\in\mathbb{R}^5$
+    $\overrightarrow{x} + \overrightarrow{0} =\overrightarrow{x} = \overrightarrow{0}+\overrightarrow{x}$ means $\overrightarrow{0}=[0,0,0,0,0,]\in\mathbb{R}^5$
+    \item Pick some $\alpha \in\mathbb{R}$ and some $\overrightarrow{v}\in\mathbb{R}^5$
+    \[\alpha \overrightarrow{v}=[\alpha v_1,... \alpha v_5] \in\mathbb{R}^5\]
+    because 
+    \item Pick $\overrightarrow{u},\overrightarrow{v}\in\mathbb{R}^5$
+    \[\overrightarrow{u}+\overrightarrow{v}=[u_1+v_1...,u_5+v_5]\in\mathbb{R}^5\]
+    because ... and is closed under addition
+\end{enumerate}
+\begin{framed}
+\noindent\textbf{DEF} $|$ Subspace\\
+A subset $W$ of a vector space $V$ is a subspace of $V$ if it is a vector space over the field $\mathbb{F}$. i.e. $W$ is a subspace of $V$
+\begin{enumerate}
+    \item $W\in V$
+    \item $W$ is a vector space
+\end{enumerate}
+\end{framed}
+\noindent\textbf{Example 1. } Show that $W={a[2,1]|\alpha\in\mathbb{R}}$\\
+\begin{enumerate}
+    \item Pick a vector $\overrightarrow{w}\in\mathbb{W}$, then $\overrightarrow{w}=[2\alpha,\alpha]$ for some $\alpha\in\mathbb{R}$. Since $\alpha\in\mathbb{R}$,  $2\alpha\in\mathbb{R}$ and  $[2\alpha,\alpha]\in\mathbb{R}^2$\\
+    i.e. A$\overrightarrow{w}(\overrightarrow{w}\in\mathbb{W}->)$
+    \item NTS: W is a vector space \\
+    $\overrightarrow{o}\in W$ because $\alpha=0\in\mathbb{R}$ therefore $0\cdot[2,1]\in W$\\
+    $\overrightarrow{0} + \overrightarrow{w} = [0,0] + [2\alpha,\alpha] = [0+2\alpha,o+\alpha]=[2\alpha,\alpha]$\\
+    $\overrightarrow{w} + -(\overrightarrow{w}) = [2\alpha,\alpha] + [-2\alpha,-\alpha] = [0,0] = \overrightarrow{0}$\\
+    For any $\overrightarrow{u},\overrightarrow{w}\in W$, $\overrightarrow{u}=[2\alpha,\alpha]$ $\overrightarrow{w}=[2\beta,\beta]$\\
+    $\overrightarrow{u} + \overrightarrow{w}=[2\alpha+2\beta,\alpha+\beta]=[2(\alpha+\beta,\alpha,\beta)]=(\alpha+\beta[2,1]\in W)$ becase $\alpha +\beta\in\mathbb{R}$\\
+    For some real number $\sigma$, $\sigma w = \sigma \alpha[2,1]\in W$ because $\sigma\alpha\in\mathbb{R}\Rightarrow$ W is a vector space $\Rightarrow$ W is a subspace of $\mathbb{R}^2$.
+\end{enumerate}
+\begin{framed}
+\noindent\textbf{DEF} $|$ Linear Combination \\
+Let V be a vector space and 
+\[U={\overrightarrow{u},\overrightarrow{u}_2,....,\overrightarrow{u}_k}\in V\]
+A vecotr $\overrightarrow{v}\in V$ is called  a linear combination of vectors in $U$ if
+
+\[\overrightarrow{v}=\alpha_1\overrightarrow{u}_1+\alpha_2\overrightarrow{u}_2+...+\alpha_x\overrightarrow{u}_x\]
+where $\alpha_i\in\mathbb{F}$
+\end{framed}
+\textbf{Example 2. } Find all linear combinations of $S={[1,0], [0,1]}\in\mathbb{R}^2$\\
+$\overrightarrow{v} = \alpha_1[1,0]+\alpha_2[0,1]\quad\alpha_1\alpha_2\in\mathbb{R}$ is a linear combination.
+\[\overrightarrow{v} = [\alpha_1,0] + [0,\alpha_2] = [\alpha_1,\alpha_2]\]
+All linear combinations are of this form. Hence all linear comb. = ${[\alpha_1,\alpha_2]|\alpha_1\alpha_2\in\mathbb{R}} = \mathbb{R}^2$
+\begin{framed}
+\noindent\textbf{DEF} $|$ Span\\
+Let $U = {\overrightarrow{u}_1,\overrightarrow{u}_2,...,\overrightarrow{u}_k}$. The set of all linear combinations of vectors in $U$ is called the span of $U$.\\
+$Span(U) = {\sum \alpha_iu_i|\alpha_i\in\mathbb{F}}$
+\end{framed}
+\noindent\textbf{Example 3.} What is the span of T $={[1,0,0],[0,1,0]}$ over $\mathbb{R}$?\\
+Span(T) = ${\alpha[1,0,0]+\beta[0,1,0] | \alpha,\beta\in\mathbb{R}}$\\
+$={[\alpha,0,0]+[0,\beta,0] | \alpha,\beta\in\mathbb{R}} = {[\alpha,\beta,0] | \alpha,\beta\in\mathbb{R}}$ = vectors on xy-plane
+\begin{framed}
+\normalsize\textbf{THM} $|$ 1\\
+Let V be a vector space and S $\leq$ V. Then 
+\begin{enumerate}[\quad(i)]
+    \item Span(S) is a subspace of V
+    \item If T is a subspace of V and S $\leq$ T, then Span(S)$\leq$T
+\end{enumerate}
+\end{framed}
+\noindent\textbf{Proof}\\
+NTS: Span(S) $\leq$ V, Span(S) is a vector space
+\begin{enumerate}
+    \item Pick $\overrightarrow{w}\in$Span(S), then $\overrightarrow{w}$ must have the form $\overrightarrow{w} = \alpha_1\overrightarrow{u}_1+\alpha_2\overrightarrow{u}_2+...+\alpha_k\overrightarrow{u}_k$ assuming $S={\overrightarrow{u}_1,...,\overrightarrow{u}_v}$\\
+    Since V is a vector space, it is closed under scalar multiplication and vector addition. Hence, $\alpha_iu_i\in V$ (closed under scalar mult.) and $\sum \alpha_iu_i\in V$ (closed under vector addition), $\Rightarrow \overrightarrow{w}\in V$. Hence A$\overrightarrow{w}(\overrightarrow{w}\in Span(S)+\overrightarrow{w}\in V)\Rightarrow Span(S)\leq V$
+    \item To show Span(S) is a vector space:
+    
+\end{enumerate}
+$\overrightarrow{0}\in$Span(S) because $\alpha =0\in\mathbb{R}$
+\begin{enumerate}
+    \item $\overrightarrow{0} +\overrightarrow{w}=(0\cdot \overrightarrow{u}+...+ 0\cdot \overrightarrow{u}_k) = \sum \alpha_iu_i=\overrightarrow{w}$
+    \item
+\end{enumerate}
+$\overrightarrow{w}=\sum \alpha_i\overrightarrow{u}_i $\\
+$\overrightarrow{r}=\sum \beta_i\overrightarrow{u}_i$\\
+$\overrightarrow{w},\overrightarrow{r}\in SPan(S)$\\
+$\overrightarrow{}$
+......
+
+$\lambda\in\mathbb{R}\quad \lambda\overrightarrow{w}=\lambda\alpha_1\overrightarrow{u}_1+...+\lambda\alpha_x\overrightarrow{u}_x\in Span(S)$ because $\lambda\alpha_i\in\mathbb{F}$\\
+$\Rightarrow$ Span(S) is a subspace $\Rightarrow$ Span(S) is a subspace of V
+\begin{framed}
+\noindent\textbf{DEF} $||$ Generates 
+A subset S of vector space V generates (or spans ) V if span(S) = V
+\end{framed}
+\textbf{Example 4.} Find subset of $\mathbb{R}^2$ that generates $\mathbb{R}^2$
+\[S={[1,1],[-1,1]}\]
+Span(S) = ${\alpha[1,1]+\beta[-1,1]|\alpha,\beta}$
+={[$\alpha-\beta$,$\alpha+\beta$]$|\alpha,\beta$} = $\mathbb{R}^2$
+\textbf{Example 5. } Does S =${[1,2],[2,4]}$ span $\mathbb{R}^2$?\\
+(Graphed) No, because [2,4] = 2[1,2]. Hence, any linear combination would result in the following: $\alpha[1,2] + \beta[2,4] = \alpha[1,2]+2\beta[1,2]=(\alpha+2\beta)[1,2] <- $ the scaling of [1,2]; only generates a line.
+\end{document}
