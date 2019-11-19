@@ -120,4 +120,67 @@ Now assume $\overrightarrow{x}tSpan(G)$. Then $\exists\lambda_i\in\mathbb{F}$ su
 \[\Rightarrow\lambda_1\overrightarrow{v}_1+...+\lambda_k\overrightarrow{v}_k+(-1)\overrightarrow{x}=\overrightarrow{0}\]
 Hence $\lambda_1\overrightarrow{v}_1+...+\lambda_k\overrightarrow{v}_k+\lambda_{k+1}\overrightarrow{x}=\overrightarrow{0}$ where $\lambda_{k+1}=-1$
 \pagebreak
+\begin{framed}
+\noindent\textbf{LEMMA 2}\\
+Let $S={\overrightarrow{v}_1,\overrightarrow{v_2,...,\overrightarrow{v}_k,\overrightarrow{x}}}$ such that $\overrightarrow{x}=\alpha_1\overrightarrow{v}+...+\alpha_k\overrightarrow{v}_k$. Then $Span(S)=Span(S-{\overrightarrow{x}})$
+\end{framed}
+\noindent\textbf{Proof} NTS 1. $Span(S)\leq Span(S-{\overrightarrow{x}})$ and 2. $Span(S-{\overrightarrow{x}})\leq Span S$
+\begin{enumerate}[\quad]
+    \item(1) Pick an arbitrary vector $\overrightarrow{u}\in Span(S)$. Then\\
+    $\overrightarrow{u}=\beta_1\overrightarrow{v}_1+...+\beta_k\overrightarrow{v}_k+\beta_{k+1}\overrightarrow{x}$\\
+    $=\beta_1\overrightarrow{v}_1+...+\beta_k\overrightarrow{v}_k+\beta_{k+1}(\alpha_1\overrightarrow{v}_1+...+\alpha_k\overrightarrow{v}_k)$\\
+    $=\beta_1\overrightarrow{v}_1+...+\beta_k\overrightarrow{v}_k+\beta_{k+1}\alpha_1\overrightarrow{v}_1+...+\beta_{k+1}\alpha_k\overrightarrow{v}_k$\\
+    $=(\beta_1+\beta_{k+1}\alpha_1)\overrightarrow{v}_1+...+(\beta_k+\beta_{k+1}\alpha_k)\overrightarrow{v}_k$\\
+    $=\lambda_1\overrightarrow{v}_1+...+\lambda_k\overrightarrow{v}_k$\\
+    $\Rightarrow\overrightarrow{u}\in Span(S-{\overrightarrow{x}})$\\
+    $\Rightarrow Span(S)\leq Span(S-{\overrightarrow{x}})$
+    \item To show (2), pick an arbitrary $\overrightarrow{w}\in Span(S-{\overrightarrow{x}})$. Then,\\
+    $\overrightarrow{w}=w_1\overrightarrow{v}_1+...+w_k\overrightarrow{v}_k=w_1\overrightarrow{v}_1+...+w_k\overrightarrow{v}_k+0\overrightarrow{x}$\\
+    $\Rightarrow\overrightarrow{w}\in Span(S)$\\
+    $Span(S-{\overrightarrow{x}})\leq Span(S)$\\
+    By (1) and (2) it follows that $Span$ $S=Span(S-{\overrightarrow{x}})$
+\end{enumerate}
+\begin{framed}
+\noindent\textbf{DEF} $|$ Basis\\
+Let $G$ be a set of vectors. We call $G$ a basis for a vector space $V$ if
+\begin{enumerate}[(i)]
+    \item $Span(G)=V$ \indent i.e. $G$ generates $V$
+    \item $G$ is a linearly independent set
+\end{enumerate}
+e.g $G={[1,0],[0,1]}$ is a basis for $\mathbb{R}^2$\\
+$T={[1,0],[0,1],[0,2]}$ is a generating set for $\mathbb{R}^2$ i.e. $R^2=Span(T)$ but $T$ is NOT a basis.
+\end{framed}
+\pagebreak
+\noindent\textbf{Size of a Basis}\\
+\begin{framed}
+\noindent\textbf{LEMMA 3} Let $V$ be a vector space, $S$ be a generating set such that $Span(S)=V$ and $B$ be a subset $V$ that is linearly independent. Then
+\[|S|\geq |B|\]
+size of a generating set $\geq$ size of a linearly independent set 
+\end{framed}
+\begin{framed}
+\noindent\textbf{THM} Basis Theorem\\
+Let $V$ be a vector space. All bases for $V$ have the same size.
+\end{framed}
+\noindent\textbf{Proof.} Suppose $B_1$ and $B_2$ are bases for $V$.\\
+*$B_1$ is a bases means (i) $Span(B_1)=V$ and (ii) $B_1$ is linearly independent.\\
+*$B_2$ is a basis means (iii) $Span(B_2)=V$ and (iv) $B_2$ is linearly independent.\\
+From Lemma 3.\\
+(i) \& (iv) $|B_2|\leq|B_1|$ assuming $B_2\leq V$ (which is true b/c any vector in $B_2$ *)\\
+(ii) \& (iii) $|B_1|=|B_2|\Rightarrow $ bases have the same size.
+\begin{framed}
+\noindent\textbf{THM} Let $V$ be a vector space, $B$ a set of generators for $V$. $B$ will be the smallest set of generators if and only if it is the basis for $V$.\\
+Assume $B$ is a basis for $V$. Consider some set of generators $T$. Since $B$ is a basis, it is linearly independent \& by Lemma 3
+\[|B|\leq|T|\]
+Since $T$ is arbitrary, the result holds for all sets of generators. Hence, B is the smallest generating set.\\
+Now, assume $B$ is the smallest generating set but is not a basis. i.e. either\\
+$Span(B)\neq V\indent\leftarrow\indent$ FALSE\\
+or $B$ is not linearly independent $\leftarrow$ TRUE\\
+If $B$ is not linearly independent, there is some vector $\overrightarrow{x}\in B$ that is a linear combination of the other vectors in $B$. By Lemma 2, then,
+\[V=Span(B)=Span(B-{\overrightarrow{x}})\]
+i.e. $B$ is NOT the smallest generating set which is a contradiction. So $B$ MUST be a basis.
+\end{framed}
+\begin{framed}
+\noindent\textbf{DEF} $|$ Dimension\\
+The dimension of a vector space is the size of a basis for $V=dim(V)=|B|$ where $B$ is a basis.
+\end{framed}
 \end{document}
