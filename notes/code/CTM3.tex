@@ -1,0 +1,306 @@
+\documentclass [12pt]{article}
+\setlength{\oddsidemargin}{0.1in}
+\setlength{\evensidemargin}{0.1in}
+\setlength{\topmargin}{-.7in}
+\setlength{\textheight}{9.25in}
+\setlength{\textwidth}{6.5in}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{enumerate}
+\usepackage{framed}
+\usepackage{epsfig}
+\usepackage{changebar}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\graphicspath{ {images/} }
+\usepackage{listings}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{multicol}
+\usepackage{mathtools}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\setlength{\columnsep}{1cm}
+% mathematical commands
+\newcommand{\zos}{{\{ 0,1\}^{\ast}}}
+\newcommand{\zoi}{{\{ 0,1\}^{\infty}}}
+\newcommand{\zon}{{\{ 0,1\}}}
+\newcommand{\zov}[1]{{\{ 0,1\}^{#1}}}
+\newcommand{\ccc}{{{\cal C}}}
+\newcommand{\gggg}{{{\cal G}}}
+\newcommand{\nat}{{{\cal N}}}
+\newcommand{\rr}{{{\bf RAND}}}
+\newcommand{\pref}{{\sqsubset}}
+\newcommand{\da}{{\downarrow}}
+\newcommand{\ot}{{\otimes}}
+\newcommand{\fann}{{\forall n\in \nat}}
+\newcommand{\pow}{{{\cal P}}}
+\newcommand{\nll}{{{\bf NULL}}}
+\newcommand{\nvc}[1]{{{\bf e_{#1}}}}
+\newcommand{\st}{{\Sigma_{2}^{A}}}
+\newcommand{\ov}[1]{{\overline{#1}}}
+\newcommand{\provided}{{\hspace{.1in}:-\hspace{.1in}}}
+\begin{document}
+\begin{center}\title*{\Large \S \; 3 Matrices}\\\author*{Jessica Wei} \end{center}
+\normalsize
+\noindent\textbf{MOTIVATION}\\
+\\
+V = 
+$\begin{bmatrix}
+\begin{bmatrix}
+cupcake\\
+0.00\\
+0.05\\
+0.06\\
+0.30\\
+0.00\\
+\overrightarrow{v_1}
+\end{bmatrix}
+,
+\begin{bmatrix}
+coconut\\
+0.00\\
+0.02\\
+0.02\\
+0.40\\
+0.00\\
+\overrightarrow{v_2}
+\end{bmatrix}
+,
+\begin{bmatrix}
+custard pie\\
+0.00\\
+0.34\\
+0.05\\
+4.70\\
+0.00\\
+\overrightarrow{v_3}
+\end{bmatrix}
+\end{bmatrix}$
+\indent
+$\alpha_1\overrightarrow{v}_1+\alpha_1\overrightarrow{v}_2+\alpha_1\overrightarrow{v}_3$ = $\begin{bmatrix}
+0.00\\
+0.45\\
+0.63\\
+6.20\\
+0.00
+\end{bmatrix}$\\\\
+What scalars satisfy this?
+\begin{framed}
+\noindent\textbf{DEF} $|$ Matrix\\
+A matrix $A_{m\times n}$ over a field $\mathbb{F}$ is a two dimensional array with $m$ rows and $n$ columns.\\
+*Notations\\\\
+\indent$A_{m\times n}$ = 
+$\begin{bmatrix}
+a_{11}&a_{12}&a_{13}&...&a_{1n}\\
+a_{21}&a_{22}&a_{23}&...&a_{2n}\\
+.\\
+.\\
+a_{m1}&a_{m2}&a_{m3}&...&a_{mn}
+\end{bmatrix}$\\\\
+
+$A_{m\times n}$ = 
+$\begin{bmatrix}
+a_{ij}
+\end{bmatrix}$
+\indent Where $i$ represents row and $j$ represents column\\\\
+
+$A_{m\times n}$ = 
+$\begin{bmatrix}
+|& &|\\
+\overrightarrow{a_1}&...&\overrightarrow{a_n}\\
+|& &|
+\end{bmatrix}$\\\\
+
+$A_{m\times n}$ = 
+$\begin{bmatrix}
+--&\overrightarrow{a_1}&--\\
+.\\
+.\\
+--&\overrightarrow{a_n}&--
+\end{bmatrix}$\\\\
+\end{framed}
+
+\begin{framed}
+\pagebreak
+\noindent\textbf{DEF} $|$ Row Space\\
+Let $A\in\mathbb{F}_{m\times n}$ (the set of all $m$ by $n$ matrices over field $\mathbb{F}$).\\
+* The column space of $A$ is the set of column vectors of $A$\\\\
+Col(A) = $\begin{bmatrix}
+\begin{bmatrix}
+a_{11}\\
+a_{21}\\
+.\\
+.\\
+a_{m1}
+\end{bmatrix}
+,
+\begin{bmatrix}
+a_{12}\\
+a_{22}\\
+.\\
+.\\
+a_{m2}
+\end{bmatrix}
+,
+...
+,
+\begin{bmatrix}
+a_{1n}\\
+a_{2n}\\
+.\\
+.\\
+a_{mn}
+\end{bmatrix}
+\end{bmatrix}$\\\\
+* The row space of A is the set of row vectors\\\\
+Row(A) = $\begin{bmatrix}
+\begin{bmatrix}
+a_{11}\\
+a_{12}\\
+.\\
+.\\
+a_{1n}
+\end{bmatrix}
+,
+\begin{bmatrix}
+a_{21}\\
+a_{22}\\
+.\\
+.\\
+a_{2n}
+\end{bmatrix}
+,
+...
+,
+\begin{bmatrix}
+a_{m1}\\
+a_{m2}\\
+.\\
+.\\
+a_{mn}
+\end{bmatrix}
+\end{bmatrix}$\\\\
+\end{framed}
+
+\noindent\textbf{Example.}\\\\
+$A$ = $\begin{bmatrix}
+2&3&1\\
+3&1&1\\
+4&0&1
+\end{bmatrix}$\\\\
+Col(A) = $\begin{bmatrix}
+\begin{bmatrix}
+2\\
+3\\
+4
+\end{bmatrix}
+,
+\begin{bmatrix}
+3\\
+1\\
+0
+\end{bmatrix}
+,
+\begin{bmatrix}
+1\\
+1\\
+1
+\end{bmatrix}
+\end{bmatrix}$\\\\
+Row(A) = $\begin{bmatrix}
+\begin{bmatrix}
+2\\
+3\\
+1
+\end{bmatrix}
+,
+\begin{bmatrix}
+3\\
+1\\
+1
+\end{bmatrix}
+,
+\begin{bmatrix}
+4\\
+0\\
+1
+\end{bmatrix}
+\end{bmatrix}$\\
+\begin{framed}
+\noindent\textbf{DEF} $|$ Transpose\\
+Let $A\in\mathbb{F}_{m\times n}$ and $A$ = $[a_{ij}]$. The transpose of $A$, $A^T$, is an $n\times m$ matrix $A^T=[a_{ji}]$ i.e. rows of $A^T$ are columns of $A$.
+\end{framed}
+\noindent\textbf{Example. } Consider\\\\
+$A$ = 
+$\begin{bmatrix}
+1&2&3\\
+4&5&6\\
+7&8&9\\
+10&11&12
+\end{bmatrix}_{4\times3}$\indent
+Find $A^T$\indent
+$A^T$ = 
+$\begin{bmatrix}
+1&4&7&10\\
+2&5&8&11\\
+3&6&9&12
+\end{bmatrix}_{3\times4}$\\
+\begin{framed}
+\noindent\textbf{DEF} $|$ Symmetric\\
+A matrix $A$ is symmetric if $A=A^T$.\\
+*Note: Symmetric matrices must be $nxn$ i.e. be square matrices.
+\end{framed}
+\noindent\textbf{Example.} Which of the following are symmetric?\\\\
+$A$ = $\begin{bmatrix}
+1&2\\
+3&4
+\end{bmatrix}$\indent
+$B$ = $\begin{bmatrix}
+1&2\\
+2&4
+\end{bmatrix}$\indent
+$C$ = $\begin{bmatrix}
+1&2&3\\
+1&2&3
+\end{bmatrix}$
+\\\\
+$A^T$ = $\begin{bmatrix}
+1&3\\
+2&4
+\end{bmatrix}$\indent
+$B^T$ = $\begin{bmatrix}
+1&2\\
+2&4
+\end{bmatrix}$\indent
+$C^T$ = $\begin{bmatrix}
+1&1\\
+2&2\\
+3&3
+\end{bmatrix}$\\\\
+Only B is symmetric.
+\begin{framed}
+\noindent\textbf{DEF} $|$ Matrix Addition\\
+Let $A,B,\in\mathbb{F}_{m\times n}$, then 
+\[A+B=[a_{ij}]_{m\times n}+[m_{ij}]_{m\times n} =  [a_{ij}+b_{ij}]_{m\times n}\]
+e.g. $\begin{bmatrix}
+1&2\\
+3&4
+\end{bmatrix}+\begin{bmatrix}
+0&1\\
+1&0
+\end{bmatrix}=\begin{bmatrix}
+1+0&2+1\\
+3+1&4+0
+\end{bmatrix}=\begin{bmatrix}
+1&3\\
+4&4
+\end{bmatrix}$
+\end{framed}
+\begin{framed}
+\noindent\textbf{DEF} $|$ Matrix-Matrix Multiplication\\
+\end{framed}
+\end{document}
