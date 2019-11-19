@@ -1,0 +1,123 @@
+\documentclass [12pt]{article}
+\setlength{\oddsidemargin}{0.1in}
+\setlength{\evensidemargin}{0.1in}
+\setlength{\topmargin}{-.7in}
+\setlength{\textheight}{9.25in}
+\setlength{\textwidth}{6.5in}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{enumerate}
+\usepackage{framed}
+\usepackage{epsfig}
+\usepackage{changebar}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\graphicspath{ {images/} }
+\usepackage{listings}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{multicol}
+\usepackage{mathtools}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\setlength{\columnsep}{1cm}
+% mathematical commands
+\newcommand{\zos}{{\{ 0,1\}^{\ast}}}
+\newcommand{\zoi}{{\{ 0,1\}^{\infty}}}
+\newcommand{\zon}{{\{ 0,1\}}}
+\newcommand{\zov}[1]{{\{ 0,1\}^{#1}}}
+\newcommand{\ccc}{{{\cal C}}}
+\newcommand{\gggg}{{{\cal G}}}
+\newcommand{\nat}{{{\cal N}}}
+\newcommand{\rr}{{{\bf RAND}}}
+\newcommand{\pref}{{\sqsubset}}
+\newcommand{\da}{{\downarrow}}
+\newcommand{\ot}{{\otimes}}
+\newcommand{\fann}{{\forall n\in \nat}}
+\newcommand{\pow}{{{\cal P}}}
+\newcommand{\nll}{{{\bf NULL}}}
+\newcommand{\nvc}[1]{{{\bf e_{#1}}}}
+\newcommand{\st}{{\Sigma_{2}^{A}}}
+\newcommand{\ov}[1]{{\overline{#1}}}
+\newcommand{\provided}{{\hspace{.1in}:-\hspace{.1in}}}
+\begin{document}
+\begin{center}\title*{\Large \S \; 4 Basis I \& II}\\\author*{Jessica Wei} \end{center}
+\normalsize
+\noindent\textbf{MOTIVATION}: Earlier we saw ${[1,0],[0,1]}$ generates $\mathbb{R}^2$ i.e.
+\[Span{[1,0],[0,1]}=\mathbb{R}^2\]
+What does this mean? For any vector $\overrightarrow{v}=[a,b]\in\mathbb{R}^2$, we can define its location as 
+\[a[1,0]+b[0,1]=\overrightarrow{v}\]
+\begin{framed}
+\noindent\textbf{DEF} $|$ Coordinates\\
+Let $G$ be a generating set of vectors and $V$ be a vector space over a field $\mathbb{F}$
+\[Span(G)=V\]
+The coordinates of a vector $\overrightarrow{v}\in V$ with respect to the set $G$ are the coefficients $\alpha_1,\alpha_2,...,\alpha_n$ where 
+\[\overrightarrow{v}=\alpha_1\overrightarrow{g}_1+\alpha_2\overrightarrow{g}_2+...+\alpha_n\overrightarrow{g}_n\]
+and $\overrightarrow{g}_i\in G$.
+\end{framed} 
+\noindent\textbf{Example. }Find the coordinates of vector $\overrightarrow{v}=[1,2]$ with respect to the given generating set of $\mathbb{R}^2$.
+\begin{enumerate}[\quad(a)]
+    \item $G={[1,1],[-1,1]}$\\
+    $[1,2]=\alpha[1,1],\beta[-1,1]$\\
+    $[\alpha,\alpha]+[-\beta,\beta]$\\
+    $[\alpha-\beta,\alpha+\beta]$\\
+    $[1,2]=\frac{3}{2}[1,1]+\frac{1}{2}[-1,1]$\\
+    Coordinates: $<\frac{3}{2},\frac{1}{2}>G$
+    \item $G_2={[-2,0],[0,1]}$\\
+    $[1,2]=\alpha[-2,0]+\beta[0,1]$\\
+    $[-2\alpha,0]+[0,\beta]$\\
+    $-2\alpha = 1, \beta=2$\\
+    $\alpha = \frac{-1}{2}$\\
+    Coordinates: $<\frac{-1}{2}, 2>_{G_2}$
+\end{enumerate}
+NOTE: We could also argue that $H={[1,0],[0,1],[2,0]}$ also generates $\mathbb{R}^2$ e.g. $\overrightarrow{v}\in\mathbb{R}$
+\[\overrightarrow{v}=\alpha[1,0]+\beta[0,1]+\lambda[2,0]\]
+\[1,2=[\alpha,0]+[0,\beta]+[2\lambda,0] = [\alpha+2\lambda,\beta]\]
+\[\beta=1\indent\alpha=-1\indent\lambda=1\indent<-1,1,1>_H\]
+\[\beta=1\indent\alpha=1\indent\lambda=0\indent<1,1,0>_H\]
+\[\beta=1\indent\alpha=2\indent\lambda=-\frac{1}{2}\indent<1,2,-\frac{1}{2}>_H\]
+We obtain more than one possible set of coordinates for the same vector under the same generating set. Confusing!
+\pagebreak
+\begin{framed}
+\noindent\textbf{DEF} $|$ Linear Dependence\\
+The vectors ${\overrightarrow{v_1}, \overrightarrow{v_2},...,\overrightarrow{v_k}}$ are linearly dependent if we can find scalars $\alpha_1,\alpha_2,...,\alpha_k\in\mathbb{F}$ not all zero such that
+\[\alpha_1\overrightarrow{v}_1+\alpha_2\overrightarrow{v}_2+...+\alpha_k\overrightarrow{v}_k=\overrightarrow{0}\]
+\[\Rightarrow\alpha_i\overrightarrow{v}_i =-\alpha_1\overrightarrow{v}_1-\alpha_2\overrightarrow{v}_2-...-\alpha_k\overrightarrow{v}_k\]
+\[\Rightarrow\overrightarrow{v}_i =\frac{\alpha_1}{\alpha_i}\overrightarrow{v}_1-\frac{\alpha_2}{\alpha_i}\overrightarrow{v}_2-...-\frac{\alpha_k}{\alpha_i}\overrightarrow{v}_k\]
+i.e. any vector in the set can be written as a linear combination of the rest of the vectors.
+\end{framed}
+\noindent\textbf{Example. }Determine if the set of vectors is linearly dependent.
+\begin{enumerate}[\quad(a)]
+    \item ${[1,0],[2,0]}$ \\
+    $\alpha_1[1,0]+\alpha_2[2,0] = [0,0]$\\
+    $alpha_1=-2,\alpha_2=1\Rightarrow$ linearly dependent
+    \item {[1,0,0],[0,2,0],[2,4,0],[0,1,0]}\\
+    $\alpha_1[1,0,0]+\alpha_2[0,2,0]+\alpha_3[2, 4,0]+\alpha_4[0,1,0] = \overrightarrow{0}$\\
+    $\alpha_1=-2\indent\alpha_2=-2\indent\alpha_3=1\indent\alpha_4=0\Rightarrow$ linearly dependent
+    \item ${[1,0,0],[0,2,0],[0,0,4]}$\\
+    $\alpha_1[1,0,0]+\alpha_2[0,2,0]+\alpha_3[0,0,4]=[0,0,0]$\\
+    $\alpha_1=0\indent\alpha_2=0\indent\alpha_3=0\Rightarrow$ linearly independent
+\end{enumerate}
+\begin{framed}
+\noindent\textbf{LEMMA 1}\\
+Let $G={\overrightarrow{v}_1,...,\overrightarrow{v}_k}$ where $\overrightarrow{v}_i\in\mathbb{F}^2$. Then $\overrightarrow{x}\in Span(G)$ if and only if $\exists\alpha_i\in\mathbb{F}$ such that 
+\[\alpha_1\overrightarrow{v}_1+\alpha_2\overrightarrow{v}_2+...+\alpha_k\overrightarrow{v}_k+\alpha_{k+1}\overrightarrow{x}=0\]
+and not all scalars are 0.
+\end{framed}
+\noindent\textbf{Proof. }Assume
+\[\alpha_1\overrightarrow{v}_1+...+\alpha_k\overrightarrow{v}_k+\alpha_{k+1}\overrightarrow{x}=0\]
+and not all scalars are 0. Then,
+\[\alpha_{k+1}\overrightarrow{x}=-\alpha_1\overrightarrow{v}_1-...-\alpha_k\overrightarrow{v}_k\]
+\[\overrightarrow{x}=\frac{-\alpha_1}{\alpha_{k+1}}\overrightarrow{v}_1-...-\frac{-\alpha_k}{\alpha_{k+1}}\overrightarrow{v}_k\]
+\[=\beta_1\overrightarrow{v}_1+...+\beta_k\overrightarrow{v}_k\]
+where $\beta_i=\frac{-\alpha_i}{\alpha_{k+1}}$\\
+$\Rightarrow\overrightarrow{x}\in Span(G)$\\
+Now assume $\overrightarrow{x}tSpan(G)$. Then $\exists\lambda_i\in\mathbb{F}$ such that 
+\[\overrightarrow{x}=\lambda_1\overrightarrow{v}_1+...+\lambda_k\overrightarrow{v}_k\]
+\[\Rightarrow\lambda_1\overrightarrow{v}_1+...+\lambda_k\overrightarrow{v}_k+(-1)\overrightarrow{x}=\overrightarrow{0}\]
+Hence $\lambda_1\overrightarrow{v}_1+...+\lambda_k\overrightarrow{v}_k+\lambda_{k+1}\overrightarrow{x}=\overrightarrow{0}$ where $\lambda_{k+1}=-1$
+\pagebreak
+\end{document}
