@@ -301,6 +301,63 @@ e.g. $\begin{bmatrix}
 \end{bmatrix}$
 \end{framed}
 \begin{framed}
-\noindent\textbf{DEF} $|$ Matrix-Matrix Multiplication\\
+\noindent\textbf{DEF} $|$ Matrix-Matrix Multiplication\\\\
+Let $A=\begin{bmatrix}
+a_{11}&...&a_{1p}\\
+.\\
+.\\
+a_{m1}&...&a_{mp}
+\end{bmatrix}_{m\times p}$\indent
+$B=\begin{bmatrix}
+b_{11}&...&b_{1n}\\
+.\\
+.\\
+b_{p1}&...&b_{pn}
+\end{bmatrix}_{p\times n}$\\\\
+$A\cdot B=\begin{bmatrix}
+\sum\limits_{k=1}^pa_{1k}b{k1}&...&\sum\limits_{k=1}^pa_{1k}b{kn}\\
+.\\
+.\\
+\sum\limits_{k=1}^pa_{mk}b{k1}&...&\sum\limits_{k=1}^pa_{mk}b{kn}
+\end{bmatrix}_{m\times n}$
+\end{framed}
+\noindent\textbf{Example.}\\
+Let $A=\begin{bmatrix}
+10&3\\
+2&1\\
+3&3
+\end{bmatrix}_{3\times2}$\indent
+$B=\begin{bmatrix}
+1&2&3\\
+4&5&6
+\end{bmatrix}_{2\times3}$\\\\
+$AB=\begin{bmatrix}
+10&3\\
+2&1\\
+3&3
+\end{bmatrix}\begin{bmatrix}
+1&2&3\\
+4&5&6
+\end{bmatrix}=\begin{bmatrix}
+10(1)+3(4)&10(2)+3(5)&10(3)+3(6)\\
+2(1)+1(4)&2(2)+1(5)&2(3)+1(6)\\
+3(1)+3(4)&3(2)+3(5)&3(3)+3(6)
+\end{bmatrix}=\begin{bmatrix}
+22&35&48\\
+6&9&12\\
+15&21&27
+\end{bmatrix}$
+\pagebreak
+\begin{framed}
+\noindent\textbf{DEF} $|$ Scalar-Matrix Multiplication\\
+Let $\alpha\in\mathbb{F},A\in\mathbb{F}_{m\times n}$
+\[\alpha A=\alpha[a_{ij}]_{m\times n} = [\alpha a_{ij}]_{mxn}\]
+e.g. $\frac{1}{2}\begin{bmatrix}
+3&4\\
+5&6
+\end{bmatrix}=\begin{bmatrix}
+1.5&2\\
+2.5&3
+\end{bmatrix}$
 \end{framed}
 \end{document}
