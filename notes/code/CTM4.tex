@@ -184,4 +184,102 @@ i.e. $B$ is NOT the smallest generating set which is a contradiction. So $B$ MUS
 The dimension of a vector space is the size of a basis for $V=dim(V)=|B|$ where $B$ is a basis.
 \end{framed}
 \pagebreak
+\noindent\textbf{Example.} Find the dimension of each set.
+\begin{enumerate}[\quad a)]
+    \item $\mathbb{R}^3$\\
+    $B=\begin{bmatrix}
+    [1,0,0]^T\\
+    [0,1,0]^T\\
+    [0,0,1]^T
+    \end{bmatrix}$\\ is a basis because (i) B is linearly independent and (ii) $Span(B)={[\alpha,\beta,\lambda]^T}=\mathbb{R}^3$\\
+    $dim(\mathbb{R}^3)=|B|=3$
+    \item $\mathbb{R}^2$\\
+    $B={[1,0]^T,[0,1]^T}$ is a basis; $|B|=2$\\
+    $dim(\mathbb{R}^2=|B|=2$
+\end{enumerate}
+\begin{framed}
+\noindent\textbf{DEF} $|$ Rank\\
+Let $A\in\mathbb{F}_{m\times n}$. The Row Rank of A, $row(A)$ or $rowRank(A)$, is the dimension of the row space of A. i.e. $row(A)=dim(rowsp(A_c))$\\
+Find a basis for the rowspace, then find the size of that basis. Similarly $colRank(A)=dim(colsp(A))$
+\end{framed}
+\noindent\textbf{Example.} 
+Let $A=\begin{bmatrix}
+1&0&0\\
+0&2&0\\
+2&4&0
+\end{bmatrix}$ Find the ranks of $A$.\\\\
+*$rowsp(A)={[1,0,0],[0,2,0],[2,4,0]}$\\
+$B_{row}={[1,0,0],[0,2,0]}$ linearly indep. \& $Span(B_{row})=rowsp(B)$\\
+$rowRank(A)=|B_{row}|=2$\\\\
+*$colsp(A)={[1,0,2]^T,[0,2,4]^T,[0,0,0]^T}$\\
+$B_{col}={[1,0,2]^T,[0,2,4]^T}$\\
+$colRank(A)=|B_{col}|=2$
+\begin{framed}
+\noindent\textbf{THM}\\
+Let $A\in\mathbb{F}_{n\times n}.$ $rowRank(A)=colRank(A)$. We refer to any rank of $A$ simply as $rank(A)$.
+\end{framed}
+\noindent\textbf{Q.} Given a vector space $V$, how do we find a basis for $V$?
+\begin{framed}
+\noindent\textbf{A1. }Shrink Algorithm
+\begin{lstlisting}
+def shrink(V):
+    B = V
+    for v in B:
+        if Span(B - v) == V:
+            B = B - v
+    return B
+\end{lstlisting}
+\end{framed}
+\pagebreak
+\begin{framed}
+\noindent\textbf{A2. }Growth Algorithm
+\begin{lstlisting}
+def grow(V):
+    B = null
+    for v in V:
+        if v not in Span(B): #i.e. if v is linearly independent
+            B = B union {v}  #add v to B
+    return B
+\end{lstlisting}
+\end{framed}
+\noindent\textbf{Proof.} Show that the grow algorithm always returns a basis for $V$.\\
+NTS (i) B is linearly independent and (ii) $Span(B)=V$\\
+To show i) it suffices to consider the condition for the if statement if $\overrightarrow{v}\notin Span(B)$. This shows that a linear combination of vectors already in B. Hence, if none of the vectors in B are linear combinations of each other, they are linearly independent. \\\\
+\noindent\textbf{Example. }Find a basis for $v={[4,1,2]^T,[0,0,1]^T,[5,4,3]^T,[2,0,1]^T}$ using the growth algorithm: $B = \emptyset$\\
+Check: $[4,1,2]\in Span(\emptyset)\rightarrow $ False\\
+\indent $B=\{[4,1,2]\}$\\
+Check: $[0,0,1]\in Span([4,1,2])\rightarrow$ False\\
+\indent $B=\{[4,1,2],[0,0,1]\}$\\
+Check: $[5,4,3]\in Span(\{[4,1,2],[0,0,1]\})$\\
+\indent $\alpha[4,1,2]+\beta[0,0,1]=[5,4,3]$\\
+\indent $[4\alpha,\alpha,2\alpha+\beta]=[5,4,3]$\\
+\indent $\alpha_1=\frac{5}{3}$ and $\alpha_2=4\rightarrow$ Contradiction!\\
+$B=\{[4,1,2],[0,0,1],[5,4,3]\}$\\\\
+\noindent\textbf{Check.} $[2,0,1]\in Span(B) \Rightarrow$ True\\
+$\alpha\begin{bmatrix}
+4\\
+1\\
+2
+\end{bmatrix}+
+\beta\begin{bmatrix}
+0\\
+0\\
+1
+\end{bmatrix}+
+\lambda\begin{bmatrix}
+5\\
+4\\
+3
+\end{bmatrix}=
+\begin{bmatrix}
+4\alpha+5\lambda\\
+1\alpha+4\lambda\\
+2\alpha+\beta+3\lambda
+\end{bmatrix}=
+\begin{bmatrix}
+2\\
+0\\
+1
+\end{bmatrix}$\\\\
+Returns $B=\{[4,1,2],[0,0,1],[5,4,3]\}$
 \end{document}
