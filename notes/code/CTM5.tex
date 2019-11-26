@@ -44,7 +44,7 @@
 \newcommand{\ov}[1]{{\overline{#1}}}
 \newcommand{\provided}{{\hspace{.1in}:-\hspace{.1in}}}
 \begin{document}
-\begin{center}\title*{\Large \S \; 5 Gaussian Elimination}\\\author*{Jessica Wei} \end{center}
+\begin{center}\title*{\Large \S \; 5 Gaussian Elimination I \& II}\\\author*{Jessica Wei} \end{center}
 \normalsize
 \noindent\textbf{MOTIVATION}: Grow Algorithm needs a solution to a system 
 \[A\overrightarrow{v}=\overrightarrow{b}\indent A\in\mathbb{F}_{m\times n}\indent \overrightarrow{b}\in\mathbb{F}^m\]
@@ -169,7 +169,7 @@ $\Rightarrow B=\begin{bmatrix}
 \[x+3y=4\]
 \[2x-y=1\]
 \[3x+2y=5\]
-\[5x+15y=2-\]
+\[5x+15y=20\]
 \\\\
 $A_G=\begin{bmatrix}
 1&3&4\\
@@ -198,7 +198,7 @@ $A_G=\begin{bmatrix}
 \end{bmatrix}\Rightarrow\begin{bmatrix}
 r_1\\
 r_2=r_2-2r_1\\
-r_3=r_3-3_r1\\
+r_3=r_3-3r_1\\
 r_4=r_4-5r_1
 \end{bmatrix} \Rightarrow \begin{bmatrix}
 1&3&4\\
@@ -227,7 +227,7 @@ IN: Matrix $A\in\mathbb{F}_{m\times n}$, vector $\overrightarrow{b}\in\mathbb{F}
 OUT: Vector $\overrightarrow{x}\in\mathbb{F}^m$ solution to $A\overrightarrow{x}=\overrightarrow{b}$\\
 Preliminary Step: Form $A_G$.\\
 \textbf{Step 1:} For every row, $r_i$, $i=2,3,...,m$, replace $\overrightarrow{r_i}=\overrightarrow{r_i}-(\frac{r_{i1}}{11})\overrightarrow{r_1}$\\
-For every row, $\overrightarrow{r}_i$, $i=2,3,...,m$, replace $\overrightarrow{r}_i=\overrightarrow{r}_i-(\frac{r_{i1}}{a_11})\overrightarrow{r}_1$\\
+For every row, $\overrightarrow{r}_i$, $i=2,3,...,m$, replace $\overrightarrow{r}_i=\overrightarrow{r}_i-(\frac{r_{i1}}{a_{11}})\overrightarrow{r}_1$\\
 $\begin{bmatrix}
 a_{11}&a_{12}&...&a_{1n}&b_1\\
 0&a_{22}&...&a_{2n}^{(1)}&b_2^{(1)}\\
@@ -257,4 +257,127 @@ If the last nonzero row is row $n$, then (i.e. $rank(A_G)=rank(A)=n=$ \# of colu
 \[*a_{kk}x_k+a_{kk-1}x_{k-1}+...+a_{kn}x_{n}=b_k\]
 \[\Rightarrow x_k=\frac{1}{a_{kk}}[b_k-a_{kk-1}x_{k-1}-...-a_{kn}x_n]\]
 \end{framed}
+\noindent\textbf{Example. } Use Gaussian Elimination to solve \\
+\[2c+3d=4 \Rightarrow  a+b+2c=0\]
+\[a+3c+d=2 \Rightarrow a+3c+d=2\]
+\[a+b+2c=0 \Rightarrow 2c+3d=4\]
+$$\begin{bmatrix}
+1&1&2&0&0\\
+1&0&3&1&2\\
+0&0&2&3
+\end{bmatrix} = \begin{bmatrix}
+1&1&2&0&0\\
+0&-1&1&1&2\\
+0&0&2&3&4
+\end{bmatrix}$$
+\[a+b+2c=0\]
+\[-b+c+d=2\]
+\[2c+3d=4\]
+Let $d$ be a free variable.\\
+From $2c+3d=4$: $c=\frac{1}{2}[4-3d]\indent c=2-\frac{3}{2}d$\\
+From $-b+c+d=2$: $b=c+d-2=\frac{3}{2}d+d\indent b=\frac{-1}{2}d$\\
+From $a+b+2c=0$: $a=-b-2x=-(\frac{-1}{2}d)-2(2-\frac{3}{2}d)=\frac{1}{2}d-3d\indent a=\frac{7}{2}d-4$
+\[=[\frac{7}{2}d-4,\frac{-1}{2}d,2-4d,d]\]
+$$\begin{bmatrix}
+1&1&2&0\\
+1&0&3&1\\
+0&0&2&3
+\end{bmatrix}\begin{bmatrix}
+a\\
+b\\
+c\\
+d
+\end{bmatrix}=\begin{bmatrix}
+4\\
+2\\
+0
+\end{bmatrix}$$\\
+Therefore there is NO UNIQUE SOLUTION (infinitely many)\\\\
+\noindent\textbf{Example. } Use Use Gaussian Elimination to solve
+\[2x+4y+3z=8\]
+\[3x-4y-4z=3\]
+\[5x-z=12\]
+$A_G=\begin{bmatrix}
+2&4&3&8\\
+3&-4&-4&3\\
+5&0&-1&12
+\end{bmatrix}\Rightarrow\begin{bmatrix}
+2&4&3&8\\
+0&-10&\frac{-17}{2}&-9\\
+0&-10&\frac{-17}{2}&-8
+\end{bmatrix}\Rightarrow\begin{bmatrix}
+2&4&3&8\\
+0&-10&\frac{-17}{2}&-9\\
+0&0&0&1
+\end{bmatrix}$\\\\
+At this point, we see an issue: last two rows form the system 
+\[-10x-\frac{-17}{2}z=-9\]
+\[-10y-\frac{-17}{2}z=-8\]
+No two numbers satisfy both equations at the same time.\\
+row 3: $0x+0y+0z=1\indent 0\neq 1$\\ 
+NOT POSSIBLE $\Rightarrow$ No Solution
+
+\begin{framed}
+\noindent\textbf{Summary. }Given the problem: $A\overrightarrow{x}=\overrightarrow{b}$ where $A\in\mathbb{F}_{m\times n},\overrightarrow{b}\in\mathbb{F}^m$...
+\begin{enumerate}[\indent1.]
+    \item Form augmented matrix $A_G\in\mathbb{F}_{m\times (n+1)}$
+    \item Find RREF($A_G$):\\
+    \indent CASE 1: $rank(A_G)=n\Rightarrow$ Perform Backward Substitution to obtain a unique solution \\
+    \indent CASE 2: $rank(A_G)<n \& r_{ki}\neq 0$ for some where $k$ is the last nonzero row. In such a case $\Rightarrow$ infinitely many solutions where $r_{k,k+1},r_{k,k+2}...r_{kn}$ being free variables (or some subset of \{$r_{k,k},r_{k,k+1},...,r_{kn}$\})\\
+    \indent CASE 3: $rank(A_G)<n$ and $r_{ki}=0$ for $i=k,k+1,...,n\Rightarrow0=b_k$ has NO SOLUTION
+\end{enumerate}
+\end{framed}
+\pagebreak
+
+\noindent\textbf{GAUSSIAN ELIMINATION WITH PIVOTING}\\\\
+\noindent\textbf{Motivation:} Suppose you program a function to solve $A\overrightarrow{x}=\overrightarrow{b}$ and you test it with \\
+$A=\begin{bmatrix}
+10^{-20}&0\\
+1&10^{20}\\
+0&1
+\end{bmatrix}\indent\overrightarrow{b}=\begin{bmatrix}
+1\\
+1\\
+-1
+\end{bmatrix}$\\\\
+Expectation:\\
+$A_G=\begin{bmatrix}
+10^{20}&0&1\\
+1&10^{20}&1\\
+0&1&-1
+\end{bmatrix}\Rightarrow\begin{bmatrix}
+10^{-20}&0&1\\
+0&10^{20}&1-10^{20}\\
+0&1&-1
+\end{bmatrix}\Rightarrow\begin{bmatrix}
+10^{-20}&0&1\\
+0&10^{20}&1-10^{20}\\
+0&0&-10^{-20}
+\end{bmatrix}$
+\[0x+0y=-10^{-20}\]
+$\Rightarrow $ NO SOLUTION \\
+What Actually Happens:\\
+$A_G=\begin{bmatrix}
+10^{20}&0&1\\
+1&10^{20}&1\\
+0&1&-1
+\end{bmatrix}=\begin{bmatrix}
+10^{-20}&0&1\\
+0&10^{20}&-10^{20}\\
+0&1&-1
+\end{bmatrix}=\begin{bmatrix}
+10^{-20}&0&1\\
+0&10^{20}&-10^{20}\\
+0&0&0
+\end{bmatrix}$
+\[\Rightarrow10^{20}y=-10^{20}\Rightarrow y=-1\]
+\[\Rightarrow 10^{-20}x=1\Rightarrow x=10^{20}\]
+$\Rightarrow$ Unique Solution: $[10^{20}, -1]$\\
+What went wrong? When we formed the augmented matrix $A_G=\begin{bmatrix}
+10^{20}&0&1\\
+1&10^{20}&1\\
+0&1&-1
+\end{bmatrix}$, our pivot $10^{-20}$ was small in comparison with the rest of the values (the same is true if the pivot is extremely large). In this case, reducing row $i$ by 
+\[r_i=r_i-\frac{r_{i1}}{r_{11}}\overrightarrow{r}_1\] cases $\frac{r_{i1}}{r_11}$ to be extremely large (or small) causing round-off errors in the process. Where $r_{11}=$ entry in row1, col1 and $\overrightarrow{r}_1=$ row1.\\
+
 \end{document}
