@@ -1,0 +1,189 @@
+\documentclass [12pt]{article}
+\setlength{\oddsidemargin}{0.1in}
+\setlength{\evensidemargin}{0.1in}
+\setlength{\topmargin}{-.7in}
+\setlength{\textheight}{9.25in}
+\setlength{\textwidth}{6.5in}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{enumerate}
+\usepackage{framed}
+\usepackage{epsfig}
+\usepackage{changebar}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\graphicspath{ {images/} }
+\usepackage{listings}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{multicol}
+\usepackage{mathtools}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\setlength{\columnsep}{1cm}
+% mathematical commands
+\newcommand{\zos}{{\{ 0,1\}^{\ast}}}
+\newcommand{\zoi}{{\{ 0,1\}^{\infty}}}
+\newcommand{\zon}{{\{ 0,1\}}}
+\newcommand{\zov}[1]{{\{ 0,1\}^{#1}}}
+\newcommand{\ccc}{{{\cal C}}}
+\newcommand{\gggg}{{{\cal G}}}
+\newcommand{\nat}{{{\cal N}}}
+\newcommand{\rr}{{{\bf RAND}}}
+\newcommand{\pref}{{\sqsubset}}
+\newcommand{\da}{{\downarrow}}
+\newcommand{\ot}{{\otimes}}
+\newcommand{\fann}{{\forall n\in \nat}}
+\newcommand{\pow}{{{\cal P}}}
+\newcommand{\nll}{{{\bf NULL}}}
+\newcommand{\nvc}[1]{{{\bf e_{#1}}}}
+\newcommand{\st}{{\Sigma_{2}^{A}}}
+\newcommand{\ov}[1]{{\overline{#1}}}
+\newcommand{\provided}{{\hspace{.1in}:-\hspace{.1in}}}
+\begin{document}
+\begin{center}\title*{\Large \S \; 6 Gram-Schimdt Process}\\\author*{Jessica Wei} \end{center}
+\normalsize
+\begin{framed}
+\noindent\textbf{DEF} $|$ Inner Product\\
+Let $\overrightarrow{x},\overrightarrow{y},\in\mathbb{R}^n$, the inner product of $\overrightarrow{x}$ with $\overrightarrow{y}$
+\[<\overrightarrow{x},\overrightarrow{y}>=x_1y_1+x_2y_2+...+x_ny_n=\overrightarrow{x}\cdot\overrightarrow{y}\]
+\end{framed}
+\begin{framed}
+\noindent\textbf{DEF} $|$ Normalized\\
+A vector $\overrightarrow{x}\in\mathbb{R}^n$ is normalized if $||\overrightarrow{x}||_2=1.$
+\end{framed}
+\noindent\textbf{Example. } Find $<\overrightarrow{x},\overrightarrow{x}>$ where $\overrightarrow{x}\in\mathbb{R}^n$. $\overrightarrow{x}=[x_1,x_2,...,x_n]$
+\[\overrightarrow{x},\overrightarrow{x}>=x_1\cdot x_1+x_2\cdot x_2+...+x_n\cdot x_n=x_1^2+x_2^2+...+x_n^2\]
+\[=||\overrightarrow{x}||_2^2\]
+*NOTE: \begin{enumerate}
+    \item $||\overrightarrow{x}||_2=\sqrt{<\overrightarrow{x},\overrightarrow{x}>}$
+    \item For any vector $\overrightarrow{x}\in\mathbb{R}^n$, we can form the normalized vector $\overrightarrow{y}$ of $\overrightarrow{x}$ by $\overrightarrow{y=\frac{1}{||\overrightarrow{x}||_2}}\overrightarrow{x}$
+\end{enumerate}
+i.e. any vector of the form $\overrightarrow{y=\frac{1}{||\overrightarrow{x}||_2}}\overrightarrow{x}$ is a normalized vector.\\\\
+\textbf{Example.} Normalize $\overrightarrow{x}=[1,1]^T$
+\[||\overrightarrow{x}||_2=\sqrt{1^2+1^2}=\sqrt{2}\]
+\[\Rightarrow \overrightarrow{y}=\frac{1}{\sqrt{2}\overrightarrow{x}}\]
+\[=[\frac{\sqrt{2}}{2},\frac{\sqrt{2}}{2}]^T\]
+Verifying:
+\[||\overrightarrow{y}||_2=\sqrt{(\frac{\sqrt{2}}{2})^2+(\frac{\sqrt{2}}{2})^2}\]
+\[=\sqrt{\frac{2}{4}+\frac{2}{4}}\]
+\[=\sqrt{1}=1\]
+\pagebreak
+\\
+\textbf{Properties of Inner Product.} Let $\overrightarrow{x},\overrightarrow{y},\overrightarrow{z}\in\mathbb{R}^n$
+\begin{enumerate}
+    \item $<\overrightarrow{x},\overrightarrow{x}> > 0$
+    \item $<\overrightarrow{x},\overrightarrow{x}> = 0$ if and only if $\overrightarrow{x}=\overrightarrow{0}$
+    \item $<>\overrightarrow{x}m,\overrightarrow{y} = <\overrightarrow{y},\overrightarrow{x}>$
+    \item $\lambda<\overrightarrow{x},\overrightarrow{y}>=<\lambda\overrightarrow{x},\overrightarrow{y}>$ Proof E.C.
+    \item $<\overrightarrow{x}+ \overrightarrow{z},\overrightarrow{y}>=<\overrightarrow{x}+\overrightarrow{y}>+<\overrightarrow{z},\overrightarrow{y}>$ Proof E.C.
+    \item $<\overrightarrow{0},\overrightarrow{y}>=0$
+\end{enumerate}
+\begin{framed}
+\textbf{CLAIM. }Let $\overrightarrow{u},\overrightarrow{v}\in\mathbb{R}^n$
+\[<\overrightarrow{u},\overrightarrow{v} = ||\overrightarrow{u}||_2\cdot ||\overrightarrow{v}||_2\cos{\theta}>\]
+Where $\theta$ is the angle between the vectors.
+\end{framed}
+\textbf{Proof.} E.C. (Hint: Consider Law of Cosines)\\
+\\
+\pagebreak
+\\
+\textbf{Gram-Schimdt Process}
+\begin{framed}
+\noindent\textbf{DEF} $|$ Orthogonal\\
+Let $\overrightarrow{x},\overrightarrow{y}\in\mathbb{R}^n$. We say $\overrightarrow{x}$ is orthogonal to $\overrightarrow{y}$ if $<\overrightarrow{x},\overrightarrow{y}>=0$ i.e. graphically $\overrightarrow{x} \bot \overrightarrow{y}$. \\
+A set of vectors is orthogonal if the vectors are orthogonal to each other.
+\end{framed}
+\noindent\textbf{Example. }Determine if the set of vectors are orthogonal.\\
+\begin{enumerate}
+    \item $M={[\frac{1}{\sqrt{2}},[\frac{1}{\sqrt{2}},0]^T,[[\frac{1}{\sqrt{2}},-[\frac{1}{\sqrt{2}},0]^T,[0,0,1]}$\\
+    $<\overrightarrow{m_1},\overrightarrow{m_2}>=([\frac{1}{\sqrt{2}})^2-\frac{1}{2}+0=\frac{1}{2}-\frac{1}{2}+0=0$\\
+    $<\overrightarrow{m_1},\overrightarrow{m_3}>=0+0+0=0$\\
+    $<m_2,m_3>=0+0+0=0$
+\end{enumerate}
+$\Rightarrow$ The vectors are orthogonal, the set is orthogonal
+\begin{framed}
+\noindent\textbf{DEF} $|$ Orthonormal\\
+A set of vectors in $\mathbb{R}^n$ is orthonormal if the vectors are orthogonal and they are normalized. i.e. they have a magnitude of 1
+\end{framed}
+\noindent\textbf{Example.} Determine if the set $M$ from the previous example is orthonormal.\\
+Ans:
+\begin{enumerate}
+    \item The vectors are orthogonal
+    \item $||\overrightarrow{m}_1||_2 = \sqrt{([\frac{1}{\sqrt{2}})^2+([\frac{1}{\sqrt{2}})^2+0^2}=\sqrt{\frac{1}{2}+\frac{1}{2}+0}= 1 = ||\overrightarrow{m}_2||_2$\\
+    $||\overrightarrow{m_3}||_2=\sqrt{0^2+0^2+1^2}=\sqrt{1}=1$\\
+\end{enumerate}
+Hence, M is orthonormal.
+\begin{framed}
+\noindent\textbf{DEF} $|$ Kronecker Delta\\
+The Kronecker delta, $d_{ij}$, is a relation defined by\\
+$d_{ij} = 1$ if $i=j$\\
+$d_{ij} = 0$ if otherwise
+*Remarks:
+\begin{enumerate}
+    \item The set ${\overrightarrow{x}_1,\overrightarrow{x}_2,...,\overrightarrow{x}_n}$ is orthonormal if \begin{enumerate}
+        \item $<\overrightarrow{x}_i,\overrightarrow{x}_j>= d_{ij}$ for all $i,j\in[1,n]$
+        \item $||\overrightarrow{x}_i||=1\indent i=1,2,...,n$
+        \item $=<\overrightarrow{x_i},\overrightarrow{x_i}>=||x_i||^2=1^2=1$ when $i-j$
+        \item $<\overrightarrow{x_i},\overrightarrow{x_j}>=0$ when $i\neq j$ 
+        \item $=d_{ij}$
+    \end{enumerate}
+    \item A set of orthogonal vectors can be made orthonormal by normalizing each vector ($\frac{1}{||\overrightarrow{x}||}\overrightarrow{x}$)
+    \item Any orthogonal/orthonormal set that spans a vector space $V$ is a bases for $V$. Proof: E.C.
+\end{enumerate}
+\end{framed}
+\noindent\textbf{Motivation for Gram-Schimdt Process}
+\begin{enumerate}[\quad*]
+    \item The Grow Algorithm allows us to find a basis from a set of vectors $T$, for some vector space.
+    \item What if we want the basis to be orthonormal?\begin{enumerate}
+        \item i.e. $B={\overrightarrow{u},\overrightarrow{x}}$ is a basis for $\mathbb{R}^2$
+        \item Notice, $\overrightarrow{x}=\overrightarrow{x}_{\parallel}+\overrightarrow{x}_\bot$ where $\overrightarrow{x}_\parallel = \alpha\overrightarrow{u}$ for $\alpha\in\mathbb{R}$
+        \item If we can find $\alpha$, then $\overrightarrow{x}_\bot = \overrightarrow{x}-\overrightarrow{x}_\parallel$ and $\overrightarrow{x}_\bot=\overrightarrow{x}-\alpha\overrightarrow{u}$
+        \item In such a case ${\overrightarrow{x}_\bot, \overrightarrow{u}}$ would be an orthogonal basis
+        \item and if we normalize the vectors, we obtain an orthonormal basis: $\frac{1}{||\overrightarrow{x}_\bot||}\overrightarrow{x}_\bot,\frac{1}{||\overrightarrow{u}_\bot||}\overrightarrow{u}$
+    \end{enumerate}
+\end{enumerate}
+\noindent\textbf{Goal.} Find $\alpha$.\\
+Notice:
+\[<\overrightarrow{x}_\bot,\overrightarrow{x}_\parallel>=0\]
+\[<\overrightarrow{x}-\overrightarrow{x}_\parallel,\overrightarrow{x}_\parallel>=0\]
+\[<\overrightarrow{x}-\alpha\overrightarrow{u},\alpha\overrightarrow{u}>=0\]
+\[<\overrightarrow{x}+(-\alpha\overrightarrow{u},\alpha\overrightarrow{u}),\alpha u>=0\]
+\[<\overrightarrow{x},\alpha\overrightarrow{u}>+<(-\alpha\overrightarrow{u}),\alpha\overrightarrow{u}>=0\]
+\[<\overrightarrow{x},\alpha\overrightarrow{u}>+<(-\alpha\overrightarrow{u}),\alpha\overrightarrow{u}>=0\]
+\[<\overrightarrow{x},\alpha\overrightarrow{u}>-\alpha<\overrightarrow{u,\alpha\overrightarrow{u}}>=0\]
+\[\alpha<\overrightarrow{x},\overrightarrow{u}>-\alpha^2<\overrightarrow{u},\overrightarrow{u}>=0\]
+\[\alpha[<\overrightarrow{x},\overrightarrow{u}>-\alpha<\overrightarrow{u},\overrightarrow{u}>]=0\]
+\textbf{Case:} If $\alpha=0$\\
+\[\overrightarrow{x}=\overrightarrow{x}_\parallel+\overrightarrow{x}_\bot=\alpha\overrightarrow{u}+\overrightarrow{x}_\bot\]
+\[\overrightarrow{x}=\overrightarrow{x}_\bot\]
+$\overrightarrow{x}$ is already to $\overrightarrow{u}$\\
+\textbf{Case:} $<\overrightarrow{x},\overrightarrow{u}>-\alpha<\overrightarrow{u},\overrightarrow{u}>=0$
+\[\alpha<\overrightarrow{u},\overrightarrow{u}>=<\overrightarrow{x},\overrightarrow{u}>\]
+\[\alpha=\frac{<\overrightarrow{x},\overrightarrow{u}>}{<\overrightarrow{u},\overrightarrow{u}>}\]
+Hence, given $\overrightarrow{x},\overrightarrow{u}$
+\[\overrightarrow{x}=\overrightarrow{x}_\parallel+\overrightarrow{x}_\bot\]
+\[\overrightarrow{x}_\parallel=\alpha\overrightarrow{u} = \frac{<\overrightarrow{x},\overrightarrow{u}>}{<\overrightarrow{u},\overrightarrow{u}>} \overrightarrow{u}=proj_{\overrightarrow{u}\overrightarrow{x}}\]
+$\frac{<\overrightarrow{x},\overrightarrow{u}>}{<\overrightarrow{u},\overrightarrow{u}>} \overrightarrow{u}$ is also known as the projection of $\overrightarrow{x}$ onto $\overrightarrow{u}$\\\\
+\textbf{Gram Schimdt Process in $\mathbb{R}^2$}
+\begin{enumerate}[\quad*]
+    \item INPUT: Basis $B={\overrightarrow{b}_1,\overrightarrow{b_2}}$
+    \item OUTPUT: orthonormal basis $N={\overrightarrow{v}_1,\overrightarrow{v}_2}$
+    \item Normalize the first vector\\
+    $\overrightarrow{v}_1=\frac{1}{||\overrightarrow{b_1}||}\overrightarrow{b_1}$
+    \item Form the vector\\
+    $\overrightarrow{y}=\overrightarrow{b_1}-proj_{\overrightarrow{b_1}}\overrightarrow{b_2}\Rightarrow \overrightarrow{v_2}=\frac{1}{||\overrightarrow{y}||}\overrightarrow{y}$
+\end{enumerate}
+\noindent\textbf{Example.} Find an orthonormal basis given the basis for $\mathbb{R}^2$ where $B=\{[2,7],[-3,4]\}$.
+\[||\overrightarrow{b_1}||=\sqrt{-3^2+4^2}=\sqrt{9+19}=5\]
+\[=\frac{1}{||\overrightarrow{b_1}||}\overrightarrow{b_1}=\frac{1}{5}[-3,4]=[\frac{3}{5}, \frac{4}{5}]\]
+\[*\overrightarrow{y}=\overrightarrow{b_1}-proj_{\overrightarrow{b_2}}\overrightarrow{b_1}\]
+\[proj_{\overrightarrow{b_2}}\overrightarrow{b_1}=\frac{<\overrightarrow{b_1},\overrightarrow{b_2}>}{<\overrightarrow{b_2},\overrightarrow{b2}>}\overrightarrow{b_2}=\frac{-6+28}{9+16}\overrightarrow{b_2}\]
+\[=\frac{22}{25}[3,2]=[\frac{-66}{25},\frac{88}{25}]\]
+\[\Rightarrow\overrightarrow{y}=[2,7]-[\frac{-66}{25},\frac{88}{25}]=[\frac{116}{25},\frac{87}{25}]\]
+\[\overrightarrow{v_2}=\frac{1}{||\overrightarrow{y}||}\overrightarrow{y}=\frac{1}{||\overrightarrow{y}||}[\frac{116}{25},\frac{87}{25}]\]
+$\Rightarrow$ Orthonomral basis $N=\{\overrightarrow{v_1},\overrightarrow{v_2}\}= \{[\frac{3}{5}, \frac{4}{5}],\frac{1}{||\overrightarrow{y}||}[\frac{116}{25},\frac{87}{25}]\}$
+\end{document}
