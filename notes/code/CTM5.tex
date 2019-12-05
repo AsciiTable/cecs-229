@@ -489,4 +489,36 @@ Step 3: Backward Substitution
 \[r_2: -4.3077z-0.3077x=2.5385\Rightarrow z=-4.3985\]
 \[r_1: 26y+5z+5x=14\Rightarrow y = -8.8749\]
 Answer. $[53.35, -8.8749, -4.3985]$\\\\
+\textbf{Gaussian Elimination with Partial or Total Pivoting}\\
+Yields a solution to $A\overrightarrow{x}=\overrightarrow{b}$ with MINIMIZED ROUND-OFF ERROR... But there might still be some error.\\
+\textbf{Goal.} Define a way to measure that error. \\
+Let $\overrightarrow{x}$ be the vector obtained from applying G.E.P.P or G.E.T.P.
+\[A\overrightarrow{x}\approx \overrightarrow{b}\]
+\[\overrightarrow{b}^k\approx \overrightarrow{b}\]
+\[error=|\overrightarrow{b}^k-\overrightarrow{b}|\]
+This is not defined for vectors yet.\\
+\begin{framed}
+\textbf{DEF} $|$ Norm\\
+Let $\overrightarrow{x}\in\mathbb{R}^n$\\
+\[*L_1-norm: ||\overrightarrow{x}||_1=|x_1|+x_2|+...+|x_n|\]
+e.g. $\overrightarrow{x}=[-1.2,-3,4]\quad ||\overrightarrow{x}||=|-1.2|+3+4=8.2$
+\[*L_2-norm: ||\overrightarrow{x}||_2=\sqrt{x_1^2+...+x_n^2}\]
+\[L_p-normp:||\overrightarrow{x}||_p=[|x_1|^p+...+|x_n|^p]^{\frac{1}{p}}\]
+So we can find error by taking a norm of the difference between vector $\overrightarrow{b^*}$ and $\overrightarrow{b}$.\\
+E.g. $A\overrightarrow{x}=\begin{bmatrix}
+1.01\\
+2.25\\
+-1.13
+\end{bmatrix}=\overrightarrow{b}^*$\\
+$\overrightarrow{b}=\begin{bmatrix}
+1.02\\
+2.24\\
+-1.1
+\end{bmatrix}$\\\\
+$\overrightarrow{diff}=\overrightarrow{b}-\overrightarrow{b}^*=[0.01,-0.01,-0.03]\Rightarrow$ error under $L_1$ norm: $||\overrightarrow{diff}||_1$
+\[=|0.01|+|-0.01|+|-0.03|=0.05\]
+error under $L_2$ norm: $||\overrightarrow{diff}||_2$
+\[=\sqrt{(0.01)^2+(-0.01)^2+(-0.03)^2}=0.03\]
+*You choose the norm depending on your situation. The given error then can provide a means for accepting a solution. e.g. if error is too high, you may deem $\overrightarrow{x}$ solution as not good enough. 
+\end{framed}
 \end{document}
